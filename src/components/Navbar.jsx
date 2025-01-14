@@ -1,6 +1,6 @@
-import "../../index.css";
-import { assets } from "../../assets/assets";
-import { NavLink } from "react-router";
+import "../index.css";
+import { assets } from "../assets/assets";
+import { Link, NavLink } from "react-router";
 import { Button } from "flowbite-react";
 import { FaRegUser } from "react-icons/fa";
 import { BiMenuAltRight } from "react-icons/bi";
@@ -11,7 +11,9 @@ const Navbar = () => {
   const [visible, setVisible] = useState(false);
   return (
     <div className="navbar container mx-auto px-3 flex items-center justify-between py-5 font-medium">
-      <img src={assets.logo} className="w-24" alt="Logo" />
+      <Link to={"/"}>
+        <img src={assets.logo} className="w-24" alt="Logo" />
+      </Link>
 
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700 uppercase">
         <NavLink to={"/"} className="flex flex-col items-center gap-1">
@@ -56,52 +58,57 @@ const Navbar = () => {
         />
       </div>
 
-      {/* Sidebar menu for small screen */}
 
+
+      {/* Sidebar menu for small screen */}
       <div
-        className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${
+        className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all z-10 ${
           visible ? "w-full" : "w-0"
         }`}
       >
         <div className="text-gray-600 mt-5 px-3">
           <div className="flex items-center justify-between border-b-2 pb-5 mb-10">
-            <img src={assets.logo} className="w-24" alt="Logo" />
-            <Button onClick={() => setVisible(false)} color="red">
-              <RxCross1 className="text-2xl font-bold cursor-pointer" />
-            </Button>
+            <Link onClick={() => setVisible(false)} to={"/"}>
+              <img src={assets.logo} className="w-24" alt="Logo" />
+            </Link>
+            <button onClick={() => setVisible(false)}>
+              <RxCross1 className="text-2xl text-red-500 font-bold cursor-pointer" />
+            </button>
           </div>
-          <div className="text-right flex flex-col gap-2">
+          <div className="flex flex-col gap-2">
             <NavLink
               onClick={() => setVisible(false)}
               to={"/"}
-              className="py-2 pr-5 border"
+              className="py-2 pl-5 border"
             >
               Home
             </NavLink>
             <NavLink
               onClick={() => setVisible(false)}
               to={"/trainers"}
-              className="py-2 pr-5 border"
+              className="py-2 pl-5 border"
             >
               All Trainer
             </NavLink>
             <NavLink
               onClick={() => setVisible(false)}
               to={"/classes"}
-              className="py-2 pr-5 border"
+              className="py-2 pl-5 border"
             >
               All Class
             </NavLink>
             <NavLink
               onClick={() => setVisible(false)}
               to={"/community"}
-              className="py-2 pr-5 border"
+              className="py-2 pl-5 border"
             >
               Community
             </NavLink>
           </div>
         </div>
       </div>
+
+      
     </div>
   );
 };
