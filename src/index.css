@@ -12,6 +12,10 @@ body{
   font-family: "Prata", serif;
 }
 
-a.active hr{
+.navbar a.active hr{
   display: block;
+  background-color: blue;
+}
+.navbar a.active{
+  color: blue;
 }
