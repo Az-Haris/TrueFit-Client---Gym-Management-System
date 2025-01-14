@@ -45,10 +45,10 @@ const Banner = () => {
 
             {/* Content */}
             <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-3">
-              <h2 className="text-4xl lg:text-5xl font-bold">{slider.title}</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold font-prata">{slider.title}</h2>
               <p className="text-lg my-4 px-9">{slider.description}</p>
               <Link to={slider.buttonLink}>
-                <Button>{slider.buttonText}</Button>
+                <Button outline gradientDuoTone="purpleToBlue">{slider.buttonText}</Button>
               </Link>
             </div>
           </div>
