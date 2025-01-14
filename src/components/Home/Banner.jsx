@@ -33,7 +33,7 @@ const Banner = () => {
   console.log(assets);
   return (
     <div className="h-80 sm:h-80 lg:h-[480px]">
-      <Carousel className="-z-[1]" slideInterval={3000}>
+      <Carousel className="z-[1]" slideInterval={3000}>
         {bannerSlider.map((slider, idx) => (
           <div
             style={{ backgroundImage: `url(${slider.image})` }}

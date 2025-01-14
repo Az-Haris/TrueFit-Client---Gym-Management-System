@@ -44,7 +44,7 @@ const Navbar = () => {
 
         <div className="group relative">
           <FaRegUser className="text-2xl sm:text-4xl cursor-pointer" />
-          <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
+          <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4 z-10">
             <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 border rounded-md">
               <p className="cursor-pointer hover:text-black">My Profile</p>
               <p className="cursor-pointer hover:text-black">Orders</p>
@@ -62,7 +62,7 @@ const Navbar = () => {
 
       {/* Sidebar menu for small screen */}
       <div
-        className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${
+        className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all z-10 ${
           visible ? "w-full" : "w-0"
         }`}
       >
