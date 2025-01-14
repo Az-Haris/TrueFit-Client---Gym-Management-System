@@ -1,6 +1,7 @@
 import About from "../components/Home/About";
 import Banner from "../components/Home/Banner";
 import Feature from "../components/Home/Feature";
+import FeaturedClasses from "../components/Home/FeaturedClasses";
 import SectionGap from "../components/SectionGap";
 
 const Home = () => {
@@ -11,6 +12,8 @@ const Home = () => {
             <Feature></Feature>
             <SectionGap></SectionGap>
             <About></About>
+            <SectionGap></SectionGap>
+            <FeaturedClasses></FeaturedClasses>
             <SectionGap></SectionGap>
 
         </div>
