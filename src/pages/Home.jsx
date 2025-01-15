@@ -1,5 +1,6 @@
 import About from "../components/Home/About";
 import Banner from "../components/Home/Banner";
+import CommunityPosts from "../components/Home/CommunityPosts";
 import Feature from "../components/Home/Feature";
 import FeaturedClasses from "../components/Home/FeaturedClasses";
 import Review from "../components/Home/Review";
@@ -17,6 +18,8 @@ const Home = () => {
       <FeaturedClasses></FeaturedClasses>
       <SectionGap></SectionGap>
       <Review></Review>
+      <SectionGap></SectionGap>
+      <CommunityPosts></CommunityPosts>
       <SectionGap></SectionGap>
     </div>
   );

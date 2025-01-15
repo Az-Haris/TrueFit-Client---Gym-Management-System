@@ -61,7 +61,7 @@ const Review = () => {
       >
         {reviews.map((review, index) => (
           <SwiperSlide key={index}>
-            <div className="review-card bg-white p-6 rounded-lg shadow-lg text-center border">
+            <div className="review-card p-6 rounded-lg shadow-lg text-center border hover:shadow-2xl">
               <img
                 src={review.image}
                 alt={review.name}
