@@ -6,14 +6,13 @@ import { FaRegUser } from "react-icons/fa";
 import { BiMenuAltRight } from "react-icons/bi";
 import { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
+import Logo from "./Logo";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
   return (
     <div className="navbar container mx-auto px-3 flex items-center justify-between py-5 font-medium">
-      <Link to={"/"}>
-        <img src={assets.logo} className="w-24" alt="Logo" />
-      </Link>
+      <Logo></Logo>
 
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700 uppercase">
         <NavLink to={"/"} className="flex flex-col items-center gap-1">

@@ -26,7 +26,6 @@ const Home = () => {
       <Newsletter></Newsletter>
       <SectionGap></SectionGap>
       <TeamSection></TeamSection>
-      <SectionGap></SectionGap>
     </div>
   );
 };
