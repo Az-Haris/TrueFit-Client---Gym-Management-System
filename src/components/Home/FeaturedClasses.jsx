@@ -77,7 +77,7 @@ const FeaturedClasses = () => {
               {clas.description}
             </p>
             <div className="flex justify-between items-center">
-              <span className="text-gray-500">{clas.bookings} Bookings</span>
+              <span className="text-gray-500"><span className="text-2xl">{clas.bookings}</span> Bookings</span>
               <Link to={clas.bookingLink}><Button color="blue">
                 Book Now
               </Button></Link>
