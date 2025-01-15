@@ -4,7 +4,7 @@ import Logo from "./Logo";
 
 const FooterSection = () => {
   return (
-    <Footer container className="">
+    <Footer container className="container mx-auto shadow-none rounded-none px-3">
       <div className="w-full text-center mt-16">
         <Footer.Divider className="max-w-40" />
         <div className="w-full flex flex-col gap-7 md:flex-row lg:items-center justify-between">

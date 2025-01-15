@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import AllTrainer from "../pages/AllTrainer";
 import AllClass from "../pages/AllClass";
 import Community from "../pages/Community";
+import TrainerDetails from "../pages/TrainerDetails";
 
 const Router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ const Router = createBrowserRouter([
             {
                 path: '/trainers',
                 element: <AllTrainer></AllTrainer>
+            },
+            {
+                path: '/trainers/:id',
+                element: <TrainerDetails></TrainerDetails>
             },
             {
                 path: '/classes',

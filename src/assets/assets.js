@@ -10,6 +10,7 @@ import Feature5 from './network.png'
 import Feature6 from './group-class.png'
 import Gym from './gym.webp'
 import GymImage from './gym-image.png'
+import Trainer from './Trainer.jpg'
 
 
 export const assets = {
@@ -25,5 +26,6 @@ export const assets = {
     Feature6,
     Gym,
     GymImage,
-
+    Trainer,
+    
 }

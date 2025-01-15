@@ -51,9 +51,9 @@ const Feature = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-3">
         {features.map((feature, idx) => (
           <Card key={idx} className="hover:shadow-2xl">
-            <div className="flex items-center justify-between">
+            <div className="relative flex items-center justify-between">
               <img src={feature.image} className="w-20" alt="Feature" />
-              <p className="text-7xl font-bold text-gray-300">{idx+1}</p>
+              <p className="absolute right-0 text-9xl font-bold text-gray-200">{idx+1}</p>
             </div>
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               {feature.title}

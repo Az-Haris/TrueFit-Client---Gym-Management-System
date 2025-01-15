@@ -77,10 +77,10 @@ const AllTrainer = () => {
 
 
   return (
-    <div className="mt-10">
+    <div className="mt-10 container mx-auto">
       <Title title={"Meet Our Trainers"} description={"Experienced trainers dedicated to helping you achieve fitness goals."}></Title>
 
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto px-3">
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 px-3">
         {trainers.map((trainer) => (
           <TrainerCard key={trainer.id} trainer={trainer} />
         ))}

@@ -1,6 +1,5 @@
 import "../index.css";
-import { assets } from "../assets/assets";
-import { Link, NavLink } from "react-router";
+import { NavLink } from "react-router";
 import { Button } from "flowbite-react";
 import { FaRegUser } from "react-icons/fa";
 import { BiMenuAltRight } from "react-icons/bi";
@@ -67,9 +66,7 @@ const Navbar = () => {
       >
         <div className="text-gray-600 mt-5 px-3">
           <div className="flex items-center justify-between border-b-2 pb-5 mb-10">
-            <Link onClick={() => setVisible(false)} to={"/"}>
-              <img src={assets.logo} className="w-24" alt="Logo" />
-            </Link>
+            <Logo></Logo>
             <button onClick={() => setVisible(false)}>
               <RxCross1 className="text-2xl text-red-500 font-bold cursor-pointer" />
             </button>
