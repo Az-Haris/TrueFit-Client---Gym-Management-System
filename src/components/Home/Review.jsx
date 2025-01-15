@@ -52,7 +52,7 @@ const Review = () => {
         slidesPerView={3}
         spaceBetween={40}
         navigation
-        loop
+        loop={true}
         breakpoints={{
           0: { slidesPerView: 1 },
           768: { slidesPerView: 2 },

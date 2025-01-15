@@ -5,6 +5,7 @@ import Feature from "../components/Home/Feature";
 import FeaturedClasses from "../components/Home/FeaturedClasses";
 import Newsletter from "../components/Home/Newsletter";
 import Review from "../components/Home/Review";
+import TeamSection from "../components/Home/TeamSection";
 import SectionGap from "../components/SectionGap";
 
 const Home = () => {
@@ -23,6 +24,8 @@ const Home = () => {
       <CommunityPosts></CommunityPosts>
       <SectionGap></SectionGap>
       <Newsletter></Newsletter>
+      <SectionGap></SectionGap>
+      <TeamSection></TeamSection>
       <SectionGap></SectionGap>
     </div>
   );
