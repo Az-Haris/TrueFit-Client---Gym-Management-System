@@ -3,9 +3,11 @@ import MainLayout from "../layouts/Main";
 import Home from "../pages/Home";
 import AllTrainer from "../pages/AllTrainer";
 import AllClass from "../pages/AllClass";
-import Community from "../pages/Community";
 import TrainerDetails from "../pages/TrainerDetails";
 import TrainerBooked from "../pages/TrainerBooked";
+import PaymentPage from "../pages/Payment/PaymentPage";
+import BeATrainer from "../pages/BeATrainer";
+import Forum from "../pages/Forum";
 
 const Router = createBrowserRouter([
     {
@@ -37,8 +39,16 @@ const Router = createBrowserRouter([
                 element: <AllClass></AllClass>
             },
             {
-                path: '/community',
-                element: <Community></Community>
+                path: '/forum',
+                element: <Forum></Forum>
+            },
+            {
+                path: '/payment',
+                element: <PaymentPage></PaymentPage>
+            },
+            {
+                path: '/become-trainer',
+                element: <BeATrainer></BeATrainer>
             },
         ]
     },

@@ -10,14 +10,14 @@ const FooterSection = () => {
         <div className="w-full flex flex-col gap-7 md:flex-row lg:items-center justify-between">
           <div>
             <Logo></Logo>
-            <div className="text-left mt-5 text-gray-500">
+            <div className="text-left mt-2 text-gray-500">
               <p>23/3, Hospital Road, Nalchity, Jahlokati.</p>
               <p>mdalimuzzaman437@gmail.com</p>
               <p>+880 1405-742311</p>
             </div>
           </div>
           <div>
-            <p className="text-left mb-3">Useful Links</p>
+            <p className="text-left mb-3 text-lg font-semibold text-gray-500">Useful Links</p>
             <ul className="text-gray-500 flex gap-x-7 gap-y-2 flex-wrap">
               <li>
                 <Link className="hover:text-gray-800" to={"/about"}>

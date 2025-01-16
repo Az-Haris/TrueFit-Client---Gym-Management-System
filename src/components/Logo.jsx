@@ -4,8 +4,7 @@ import { assets } from "../assets/assets";
 const Logo = () => {
   return (
     <Link className="flex items-center gap-3" to={"/"}>
-      <img src={assets.logo} className="w-20" alt="" />
-      <p className="text-2xl font-black text-gray-800">TrueFit</p>
+      <img src={assets.logo} className="w-24 md:w-32" alt="" />
     </Link>
   );
 };

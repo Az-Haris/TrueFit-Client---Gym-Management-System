@@ -29,8 +29,8 @@ const Navbar = () => {
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
 
-        <NavLink to={"/community"} className="flex flex-col items-center gap-1">
-          <p>Community</p>{" "}
+        <NavLink to={"/forum"} className="flex flex-col items-center gap-1">
+          <p>Forum</p>{" "}
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
       </ul>

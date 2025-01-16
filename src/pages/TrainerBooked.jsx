@@ -1,5 +1,4 @@
-import { Card } from "flowbite-react";
-import { useState } from "react";
+import { Button, Card } from "flowbite-react";
 import { useLocation, useNavigate } from "react-router";
 
 const TrainerBooked = () => {
@@ -54,14 +53,9 @@ const TrainerBooked = () => {
     "Sauna/steam room",
   ];
 
-  // State to track selected package
-  const [selectedPackage, setSelectedPackage] = useState(null);
 
-  const handleJoinNow = () => {
-    if (!selectedPackage) {
-      alert("Please select a membership package.");
-      return;
-    }
+  const handleJoinNow = (selectedPackage) => {
+    
     navigate("/payment", {
       state: { trainerName, selectedSlot, selectedPackage },
     });
@@ -70,7 +64,7 @@ const TrainerBooked = () => {
   return (
     <div className="container mx-auto px-3">
       {/* Trainer and Slot Info */}
-      <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
+      <div className="bg-white shadow-lg rounded-lg p-5 mb-8">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">
           Trainer Booking Details
         </h2>
@@ -83,11 +77,11 @@ const TrainerBooked = () => {
       </div>
 
       {/* Membership Packages */}
-      <div className="bg-gray-50 shadow-lg rounded-lg p-6 mb-8">
+      <div className="bg-gray-50 shadow-lg rounded-lg p-5 mb-8">
         <h3 className="text-2xl font-bold mb-4">Choose Your Membership Plan</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {packages.map((pkg, idx) => (
-            <Card key={idx} >
+            <Card key={idx}>
               <h5 className="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">
                 {pkg.name}
               </h5>
@@ -111,7 +105,7 @@ const TrainerBooked = () => {
                   >
                     {pkg.benefits.includes(benefit) ? (
                       <svg
-                        className="h-5 w-5 shrink-0 text-cyan-600 dark:text-cyan-500"
+                        className="h-5 w-5 shrink-0 text-green-600"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"
@@ -143,12 +137,12 @@ const TrainerBooked = () => {
                 ))}
               </ul>
 
-              <button
-                type="button"
-                className="inline-flex w-full justify-center rounded-lg bg-cyan-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-700 focus:outline-none focus:ring-4 focus:ring-cyan-200 dark:focus:ring-cyan-900"
+              <Button
+                color="blue"
+                onClick={()=>handleJoinNow(pkg.name)}
               >
                 Choose plan
-              </button>
+              </Button>
             </Card>
           ))}
         </div>
