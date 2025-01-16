@@ -50,7 +50,7 @@ const TrainerDetails = () => {
             <Link
               key={index}
               className="bg-blue-500 text-white font-medium py-2 px-4 rounded hover:bg-blue-600 transition text-center"
-              onClick={() => navigate("/booking", { state: { slot } })}
+              onClick={() => navigate("/trainers/:id/trainer-booked", { state: { slot } })}
             >
               {slot}
             </Link>
