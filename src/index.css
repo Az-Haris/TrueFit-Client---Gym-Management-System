@@ -19,3 +19,8 @@ body{
 .navbar a.active{
   color: blue;
 }
+
+.dashboard-link a.active{
+  background-color: rgb(245, 245, 255);
+  border-color: blue;
+}

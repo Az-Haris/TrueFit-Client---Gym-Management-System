@@ -48,7 +48,7 @@ const About = () => {
                 </List.Item>
               ))}
             </List>
-            <Link to={'/community'}>
+            <Link to={'/forum'}>
               <Button className="mt-10" color="blue">Learn More</Button>
             </Link>
           </div>

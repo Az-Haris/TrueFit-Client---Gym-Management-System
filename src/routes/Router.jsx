@@ -8,11 +8,13 @@ import TrainerBooked from "../pages/TrainerBooked";
 import PaymentPage from "../pages/Payment/PaymentPage";
 import BeATrainer from "../pages/BeATrainer";
 import Forum from "../pages/Forum";
+import ErrorPage from "../pages/ErrorPage";
+import Dashboard from "../layouts/Dashboard";
 
 const Router = createBrowserRouter([
     {
         path: '*',
-        element: <div>err</div>
+        element: <ErrorPage></ErrorPage>
     },
     {
         path: '/',
@@ -49,6 +51,24 @@ const Router = createBrowserRouter([
             {
                 path: '/become-trainer',
                 element: <BeATrainer></BeATrainer>
+            },
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <div>hello dashboard</div>
+            },
+            {
+                path: 'admin-home',
+                element: <div>admin home</div>
+            },
+            {
+                path: 'manage',
+                element: <div>manage</div>
             },
         ]
     },

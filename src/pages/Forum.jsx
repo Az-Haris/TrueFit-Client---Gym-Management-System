@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+
 import Title from "../components/Title";
 
 const Forum = () => {
