@@ -1,5 +1,5 @@
 import "../index.css";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import { Button } from "flowbite-react";
 import { FaRegUser } from "react-icons/fa";
 import { BiMenuAltRight } from "react-icons/bi";
@@ -41,9 +41,11 @@ const Navbar = () => {
       </ul>
 
       <div className="flex items-center gap-3">
+        <Link to={'/login'}>
         <Button size="sm" color="blue">
-          Login / Register
+          Login
         </Button>
+        </Link>
 
         <div className="group relative">
           <FaRegUser className="text-2xl sm:text-4xl cursor-pointer" />
@@ -100,10 +102,17 @@ const Navbar = () => {
             </NavLink>
             <NavLink
               onClick={() => setVisible(false)}
-              to={"/community"}
+              to={"/forum"}
               className="py-2 pl-5 border"
             >
-              Community
+              Forum
+            </NavLink>
+            <NavLink
+              onClick={() => setVisible(false)}
+              to={"/dashboard"}
+              className="py-2 pl-5 border"
+            >
+              Dashboard
             </NavLink>
           </div>
         </div>

@@ -25,8 +25,16 @@ const Sidebar = () => {
           className="flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-lg rounded-r-none"
           to={"trainers"}
         >
-          <LuFileUser className="text-2xl" />{" "}
+          <CgProfile className="text-2xl" />{" "}
           <p className="hidden md:block">Trainers</p>
+        </NavLink>
+
+        <NavLink
+          className="flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-lg rounded-r-none"
+          to={"applied-trainers"}
+        >
+          <LuFileUser className="text-2xl" />{" "}
+          <p className="hidden md:block">Applied Trainers</p>
         </NavLink>
 
         <NavLink
@@ -44,10 +52,6 @@ const Sidebar = () => {
           <LuBookUser className="text-2xl" />{" "}
           <p className="hidden md:block">Subscribers</p>
         </NavLink>
-
-
-
-
 
         {/* Trainer Routes */}
 
@@ -75,20 +79,15 @@ const Sidebar = () => {
           <p className="hidden md:block">Manage Slots</p>
         </NavLink>
 
-
-
         {/* Admin & Trainer Route */}
 
         <NavLink
           className="flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-lg rounded-r-none"
-          to={"new-post"}
+          to={"add-forum"}
         >
           <LuCirclePlus className="text-2xl" />{" "}
-          <p className="hidden md:block">New Forum Post</p>
+          <p className="hidden md:block">Add Forum Post</p>
         </NavLink>
-
-
-
 
         {/* Member Route */}
 
@@ -118,14 +117,11 @@ const Sidebar = () => {
 
         <NavLink
           className="flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-lg rounded-r-none"
-          to={"booked-trainer"}
+          to={"profile"}
         >
           <CgProfile className="text-2xl" />{" "}
           <p className="hidden md:block">Profile</p>
         </NavLink>
-
-
-
       </div>
     </div>
   );

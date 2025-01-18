@@ -12,6 +12,7 @@ import Gym from './gym.webp'
 import GymImage from './gym-image.png'
 import Trainer from './Trainer.jpg'
 import Trainer1 from './trainer.webp'
+import Google from './google.png'
 
 
 export const assets = {
@@ -29,5 +30,5 @@ export const assets = {
     GymImage,
     Trainer,
     Trainer1,
-    
+    Google
 }

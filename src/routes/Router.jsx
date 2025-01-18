@@ -10,6 +10,22 @@ import BeATrainer from "../pages/BeATrainer";
 import Forum from "../pages/Forum";
 import ErrorPage from "../pages/ErrorPage";
 import Dashboard from "../layouts/Dashboard";
+import Login from "../pages/Login";
+import Subscribers from "../pages/Dashboard/Admin/Subscribers";
+import Trainers from "../pages/Dashboard/Admin/Trainers";
+import AddClass from "../pages/Dashboard/Admin/AddClass";
+import AdminHome from "../pages/Dashboard/Admin/AdminHome";
+import TrainerHome from "../pages/Dashboard/Trainer/TrainerHome";
+import AddSlot from "../pages/Dashboard/Trainer/AddSlot";
+import ManageSlots from "../pages/Dashboard/Trainer/ManageSlots";
+import AddForum from "../pages/Dashboard/AddForum";
+import MemberHome from "../pages/Dashboard/Member/MemberHome";
+import ActivityLog from "../pages/Dashboard/Member/ActivityLog";
+import BookedTrainer from "../pages/Dashboard/Member/BookedTrainer";
+import Profile from "../pages/Dashboard/Member/Profile";
+import Welcome from "../pages/Dashboard/Welcome";
+import AppliedTrainers from "../pages/Dashboard/Admin/AppliedTrainers";
+import AppliedTrainerDetails from "../pages/Dashboard/Admin/AppliedTrainerDetails";
 
 const Router = createBrowserRouter([
     {
@@ -23,6 +39,10 @@ const Router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
+            },
+            {
+                path: '/login',
+                element: <Login></Login>
             },
             {
                 path: '/trainers',
@@ -60,15 +80,63 @@ const Router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard',
-                element: <div>hello dashboard</div>
+                element: <Welcome></Welcome>
             },
             {
                 path: 'admin-home',
-                element: <div>admin home</div>
+                element: <AdminHome></AdminHome>
             },
             {
-                path: 'manage',
-                element: <div>manage</div>
+                path: 'trainers',
+                element: <Trainers></Trainers>
+            },
+            {
+                path: 'applied-trainers',
+                element: <AppliedTrainers></AppliedTrainers>
+            },
+            {
+                path: 'applied-trainers/:id',
+                element: <AppliedTrainerDetails></AppliedTrainerDetails>
+            },
+            {
+                path: 'add-class',
+                element: <AddClass></AddClass>
+            },
+            {
+                path: 'subscribers',
+                element: <Subscribers></Subscribers>
+            },
+            {
+                path: 'trainer-home',
+                element: <TrainerHome></TrainerHome>
+            },
+            {
+                path: 'add-slot',
+                element: <AddSlot></AddSlot>
+            },
+            {
+                path: 'manage-slots',
+                element: <ManageSlots></ManageSlots>
+            },
+            {
+                path: 'add-forum',
+                element: <AddForum></AddForum>
+            },
+            {
+                path: 'member-home',
+                element: <MemberHome></MemberHome>
+            },
+            {
+                path: 'activity-log',
+                element: <ActivityLog></ActivityLog>
+            },
+            {
+                path: 'booked-trainer',
+                element: <BookedTrainer></BookedTrainer>
+            },
+            {
+                path: 'profile',
+                element: <Profile></Profile>
             },
         ]
     },

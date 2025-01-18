@@ -152,7 +152,7 @@ const AllClass = () => {
                   <Link
                     to={`/trainer/${trainer.id}`}
                     key={trainer.id}
-                    className="relative block w-12 h-12 rounded-full border border-blue-400 hover:ring-2 hover:ring-blue-500 overflow-hidden hover:z-10 transition duration-200"
+                    className="relative block w-10 h-10 rounded-full border border-blue-400 hover:ring-2 hover:ring-blue-500 overflow-hidden hover:z-10 transition duration-200"
                   >
                     <img
                       src={assets.Feature2}
