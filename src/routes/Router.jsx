@@ -26,6 +26,8 @@ import Profile from "../pages/Dashboard/Member/Profile";
 import Welcome from "../pages/Dashboard/Welcome";
 import AppliedTrainers from "../pages/Dashboard/Admin/AppliedTrainers";
 import AppliedTrainerDetails from "../pages/Dashboard/Admin/AppliedTrainerDetails";
+import SignUp from "../pages/SignUp";
+import ForgotPass from "../pages/ForgotPass";
 
 const Router = createBrowserRouter([
     {
@@ -43,6 +45,14 @@ const Router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login></Login>
+            },
+            {
+                path: '/signup',
+                element: <SignUp></SignUp>
+            },
+            {
+                path: '/forgot-pass',
+                element: <ForgotPass></ForgotPass>
             },
             {
                 path: '/trainers',

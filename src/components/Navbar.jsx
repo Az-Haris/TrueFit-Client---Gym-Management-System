@@ -1,14 +1,18 @@
 import "../index.css";
 import { Link, NavLink } from "react-router";
 import { Button } from "flowbite-react";
-import { FaRegUser } from "react-icons/fa";
 import { BiMenuAltRight } from "react-icons/bi";
 import { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 import Logo from "./Logo";
+import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
+  const { user, logOut, setLoading } = useAuth();
+
+
   return (
     <div className="navbar container mx-auto px-3 flex items-center justify-between py-5 font-medium">
       <Logo></Logo>
@@ -41,29 +45,63 @@ const Navbar = () => {
       </ul>
 
       <div className="flex items-center gap-3">
-        <Link to={'/login'}>
-        <Button size="sm" color="blue">
-          Login
-        </Button>
-        </Link>
+        {user ? (
+          <div className="group relative">
+            <div className="w-10 h-10 rounded-full border border-blue-500 overflow-hidden">
+              {user.photoURL && (
+                <img
+                  className="w-full object-cover"
+                  alt={user?.displayName}
+                  src={user?.photoURL}
+                />
+              )}
+            </div>
 
-        <div className="group relative">
-          <FaRegUser className="text-2xl sm:text-4xl cursor-pointer" />
-          <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4 z-10">
-            <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 border rounded-md">
-              <p className="cursor-pointer hover:text-black">My Profile</p>
-              <p className="cursor-pointer hover:text-black">Orders</p>
-              <p className="cursor-pointer hover:text-black">Logout</p>
+            <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4 z-10">
+              <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 border rounded-md">
+                <p className="cursor-pointer hover:text-black">My Profile</p>
+                <p className="cursor-pointer hover:text-black">Orders</p>
+                <p
+                  onClick={() => {
+                    logOut()
+                      .then(() => {
+                        setLoading(false);
+                        Swal.fire(
+                          "Success!",
+                          "You're Logged Out Successfully",
+                          "success",
+                        );
+                      })
+                      .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        Swal.fire(
+                          "Error!",
+                          `${errorCode} ${errorMessage}`,
+                          "error",
+                        );
+                      });
+                  }}
+                  className="cursor-pointer hover:text-black"
+                >
+                  Logout
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <Link to={"/login"}>
+            <Button size="sm" color="blue">
+              Login
+            </Button>
+          </Link>
+        )}
+
         <BiMenuAltRight
           onClick={() => setVisible(true)}
           className="text-4xl sm:text-5xl cursor-pointer sm:hidden"
         />
       </div>
-
-
 
       {/* Sidebar menu for small screen */}
       <div
@@ -117,8 +155,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-
-      
     </div>
   );
 };
