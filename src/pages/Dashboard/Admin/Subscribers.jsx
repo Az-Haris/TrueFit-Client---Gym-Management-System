@@ -1,70 +1,22 @@
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+
 const Subscribers = () => {
-  const newsletterSubscribers = [
-    {
-      id: 1,
-      name: "John Doe",
-      email: "john.doe@example.com",
-      subscribedDate: "2025-01-01",
+  const axiosSecure = useAxiosSecure();
+
+  const { data: subscribers = [] } = useQuery({
+    queryKey: ["subscribers"],
+    queryFn: async () => {
+      const result = await axiosSecure.get("/subscribers");
+      return result.data;
     },
-    {
-      id: 2,
-      name: "Jane Smith",
-      email: "jane.smith@example.com",
-      subscribedDate: "2025-01-02",
-    },
-    {
-      id: 3,
-      name: "Emily Johnson",
-      email: "emily.johnson@example.com",
-      subscribedDate: "2025-01-03",
-    },
-    {
-      id: 4,
-      name: "Michael Brown",
-      email: "michael.brown@example.com",
-      subscribedDate: "2025-01-04",
-    },
-    {
-      id: 5,
-      name: "Sarah Wilson",
-      email: "sarah.wilson@example.com",
-      subscribedDate: "2025-01-05",
-    },
-    {
-      id: 6,
-      name: "Chris Davis",
-      email: "chris.davis@example.com",
-      subscribedDate: "2025-01-06",
-    },
-    {
-      id: 7,
-      name: "Jessica Martinez",
-      email: "jessica.martinez@example.com",
-      subscribedDate: "2025-01-07",
-    },
-    {
-      id: 8,
-      name: "Daniel Garcia",
-      email: "daniel.garcia@example.com",
-      subscribedDate: "2025-01-08",
-    },
-    {
-      id: 9,
-      name: "Laura Hernandez",
-      email: "laura.hernandez@example.com",
-      subscribedDate: "2025-01-09",
-    },
-    {
-      id: 10,
-      name: "James Lee",
-      email: "james.lee@example.com",
-      subscribedDate: "2025-01-10",
-    },
-  ];
+  });
 
   return (
     <>
-      <p className="text-2xl font-bold text-gray-800 mb-4">All Newsletter Subscribers</p>
+      <p className="text-2xl font-bold text-gray-800 mb-4">
+        All Newsletter Subscribers
+      </p>
 
       <div className="flex flex-col gap-2">
         {/* List Table Title */}
@@ -77,7 +29,7 @@ const Subscribers = () => {
         </div>
 
         {/* Subscriber list */}
-        {newsletterSubscribers.map((subscriber, idx) => (
+        {subscribers.map((subscriber, idx) => (
           <div
             key={idx}
             className="grid grid-cols-[auto_2fr_1fr] md:grid-cols-[0.5fr_6fr_2fr] items-center gap-2 px-2 py-1 border text-sm"

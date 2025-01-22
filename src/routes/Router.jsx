@@ -18,7 +18,6 @@ import AdminHome from "../pages/Dashboard/Admin/AdminHome";
 import TrainerHome from "../pages/Dashboard/Trainer/TrainerHome";
 import AddSlot from "../pages/Dashboard/Trainer/AddSlot";
 import ManageSlots from "../pages/Dashboard/Trainer/ManageSlots";
-import AddForum from "../pages/Dashboard/AddForum";
 import MemberHome from "../pages/Dashboard/Member/MemberHome";
 import ActivityLog from "../pages/Dashboard/Member/ActivityLog";
 import BookedTrainer from "../pages/Dashboard/Member/BookedTrainer";
@@ -32,6 +31,8 @@ import PrivateRoute from "./PrivateRoute";
 import MemberRoute from "./MemberRoute";
 import AdminRoute from "./AdminRoute";
 import TrainerRoute from "./TrainerRoute";
+import AddForum from "../pages/Dashboard/AddForum";
+import AdminTrainerRoute from "./AdminTrainerRoute";
 
 const Router = createBrowserRouter([
   {
@@ -76,7 +77,11 @@ const Router = createBrowserRouter([
       },
       {
         path: "/forum",
-        element: <Forum></Forum>,
+        element: (
+          <AdminTrainerRoute>
+            <Forum></Forum>
+          </AdminTrainerRoute>
+        ),
       },
       {
         path: "/payment",
@@ -178,15 +183,7 @@ const Router = createBrowserRouter([
       },
       {
         path: "add-forum",
-        element: (
-          <AdminRoute>
-            <AddForum></AddForum>
-          </AdminRoute>
-        ) || (
-          <TrainerRoute>
-            <AddForum></AddForum>
-          </TrainerRoute>
-        ),
+        element: <AddForum></AddForum>,
       },
       {
         path: "member-home",

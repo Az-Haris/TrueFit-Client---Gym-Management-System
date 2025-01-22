@@ -2,26 +2,40 @@ import { Button, Label, TextInput } from "flowbite-react";
 import { HiMail } from "react-icons/hi";
 import { RiUser3Fill } from "react-icons/ri";
 import { assets } from "../../assets/assets";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const Newsletter = () => {
-  const handleSubmit = (e) => {
+  const axiosPublic = useAxiosPublic();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;
-    const formData = {
+    const data = {
       name,
       email,
+      subscriptionDate: new Date()
     };
 
-    console.log(formData)
-    e.target.name.value=''
-    e.target.email.value=''
+    await axiosPublic.post("/subscribers", data).then(() => {
+      Swal.fire(
+        "Success!",
+        "Successfully Subscribed! We'll get back to you soon.",
+        "success",
+      );
+    });
+    e.target.name.value = "";
+    e.target.email.value = "";
   };
 
   return (
-    <section style={{ backgroundImage: `url(${assets.GymImage})` }} className="relative bg-cover bg-center h-full py-20 md:py-32 px-3 sm:px-10 md:px-16 lg:px-20">
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gray-800 bg-opacity-50"></div>
+    <section
+      style={{ backgroundImage: `url(${assets.GymImage})` }}
+      className="relative bg-cover bg-center h-full py-20 md:py-32 px-3 sm:px-10 md:px-16 lg:px-20"
+    >
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gray-800 bg-opacity-50"></div>
       <div className="relative flex flex-col md:flex-row lg:gap-10 justify-between">
         {/* Left Side - Text */}
         <div className=" mb-8 lg:mb-0 md:w-1/2">
@@ -40,7 +54,11 @@ const Newsletter = () => {
             <div className="flex flex-col lg:flex-row gap-3">
               <div className="w-full">
                 <div className="mb-2 block">
-                  <Label htmlFor="name" className="text-white" value="Your Name" />
+                  <Label
+                    htmlFor="name"
+                    className="text-white"
+                    value="Your Name"
+                  />
                 </div>
                 <TextInput
                   id="name"
@@ -55,7 +73,11 @@ const Newsletter = () => {
 
               <div className="w-full">
                 <div className="mb-2 block">
-                  <Label htmlFor="email4" className="text-white" value="Your email" />
+                  <Label
+                    htmlFor="email4"
+                    className="text-white"
+                    value="Your email"
+                  />
                 </div>
                 <TextInput
                   id="email4"
@@ -69,7 +91,9 @@ const Newsletter = () => {
               </div>
             </div>
 
-            <Button color="blue" type="submit">Subscribe Now</Button>
+            <Button color="blue" type="submit">
+              Subscribe Now
+            </Button>
           </form>
         </div>
       </div>

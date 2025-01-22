@@ -11,7 +11,7 @@ const TrainerRoute = ({children}) => {
   if (isLoading) {
     return <Loading></Loading>;
   }
-  if (role === "admin") {
+  if (role === "trainer") {
     return children;
   }
   return <Navigate state={location.pathname} to={"/dashboard"}></Navigate>;
