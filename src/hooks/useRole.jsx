@@ -14,6 +14,7 @@ const useRole = () => {
             return data.role
         }
     })
+
     return {role, isLoading}
 };
 

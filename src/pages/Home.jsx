@@ -6,11 +6,13 @@ import FeaturedClasses from "../components/Home/FeaturedClasses";
 import Newsletter from "../components/Home/Newsletter";
 import Review from "../components/Home/Review";
 import TeamSection from "../components/Home/TeamSection";
+import ScrollToTop from "../components/ScrollToTop";
 import SectionGap from "../components/SectionGap";
 
 const Home = () => {
   return (
     <div className="container mx-auto">
+      <ScrollToTop></ScrollToTop>
       <Banner></Banner>
       <SectionGap></SectionGap>
       <Feature></Feature>

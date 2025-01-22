@@ -37,7 +37,7 @@ const MemberHome = () => {
   const quickLinks = [
     { id: 1, title: "Community Forums", link: "/forum" },
     { id: 2, title: "Book a Trainer", link: "/trainers" },
-    { id: 3, title: "Classes", link: "/classes" },
+    { id: 3, title: "Become a Trainer", link: "/become-trainer" },
   ];
 
   return (

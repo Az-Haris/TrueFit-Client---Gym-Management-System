@@ -2,6 +2,8 @@ import { useState } from "react";
 import Select from "react-select";
 import Title from "../components/Title";
 import { Button } from "flowbite-react";
+import ScrollToTop from "../components/ScrollToTop";
+import useAuth from "../hooks/useAuth";
 
 const skillOptions = [
   { value: "fitness", label: "Fitness" },
@@ -21,7 +23,9 @@ const dayOptions = [
   { value: "Sat", label: "Saturday" },
 ];
 
-const BeATrainer = ({ userEmail }) => {
+const BeATrainer = () => {
+  const {user}= useAuth()
+  const userEmail = user.email;
   const [formData, setFormData] = useState({
     fullName: "",
     age: "",
@@ -92,6 +96,7 @@ const BeATrainer = ({ userEmail }) => {
 
   return (
     <div className="mt-5 md:mt-10">
+      <ScrollToTop></ScrollToTop>
       <Title
         title={"Become a Trainer"}
         description={
