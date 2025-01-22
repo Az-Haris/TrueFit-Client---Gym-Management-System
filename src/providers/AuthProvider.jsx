@@ -13,45 +13,52 @@ import {
 import app from "../firebase/firebase.init";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
+  const axiosPublic = useAxiosPublic();
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const provider = new GoogleAuthProvider();
+  const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState("");
 
-
+  // console.log(user);
 
   // Register User
   const registerNewUser = (email, pass) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, pass);
   };
 
   // Login User
   const loginUser = (email, pass) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, pass);
   };
 
   // Logout User
   const logOut = () => {
+    setLoading(true);
     return signOut(auth);
   };
 
   // Update User
   const updateUser = (userInfo) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, userInfo);
   };
 
   // Password Reset
   const passwordReset = (email) => {
+    setLoading(true);
     return sendPasswordResetEmail(auth, email);
   };
 
   // Login with google
   const loginWithGoogle = () => {
+    setLoading(true);
     return signInWithPopup(auth, provider);
   };
 
@@ -72,13 +79,38 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      setUser(null); // Clear user data while fetching
+      setLoading(true);
+
+      if (currentUser) {
+        try {
+          // Fetch user data from backend using their email
+          const response = await axiosPublic.get(`/users/${currentUser.email}`);
+
+          if (response.status == 200) {
+            // Merge Firebase data with backend data if needed
+            setUser({
+              ...currentUser,
+              ...response.data, // Merge backend data
+            });
+          } else {
+            console.error("Failed to fetch user data:");
+            setUser(currentUser); // Fallback to Firebase user if backend fetch fails
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error.message);
+          setUser(currentUser); // Fallback to Firebase user in case of an error
+        }
+      }
+
+      setLoading(false);
     });
+
     return () => {
       unsubscribe();
     };
-  });
+  }, [axiosPublic]);
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

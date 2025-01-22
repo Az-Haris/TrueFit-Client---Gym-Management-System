@@ -1,6 +1,9 @@
+import { Link } from "react-router";
+import useAuth from "../../../hooks/useAuth";
 
 
 const MemberHome = () => {
+  const {user} = useAuth()
   const memberInfo = {
     name: "Jane Smith",
     profilePicture: "https://via.placeholder.com/150",
@@ -32,9 +35,9 @@ const MemberHome = () => {
   ];
 
   const quickLinks = [
-    { id: 1, title: "Community Forums", link: "/forums" },
-    { id: 2, title: "Book a Trainer", link: "/book-trainer" },
-    { id: 3, title: "Manage Membership", link: "/membership" },
+    { id: 1, title: "Community Forums", link: "/forum" },
+    { id: 2, title: "Book a Trainer", link: "/trainers" },
+    { id: 3, title: "Classes", link: "/classes" },
   ];
 
   return (
@@ -44,14 +47,14 @@ const MemberHome = () => {
         <div className="bg-white shadow-md rounded-lg p-3 sm:p-6 mb-6">
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <img
-              src={memberInfo.profilePicture}
-              alt={memberInfo.name}
+              src={user.photoURL}
+              alt={user.displayName}
               className="w-20 h-20 rounded-full object-cover"
             />
             <div>
-              <h2 className="text-xl font-bold">{memberInfo.name}</h2>
+              <h2 className="text-xl font-bold">{user.displayName}</h2>
               <p className="text-gray-600">{memberInfo.membership}</p>
-              <p className="text-gray-600">{memberInfo.email}</p>
+              <p className="text-gray-600">{user.email}</p>
             </div>
           </div>
         </div>
@@ -97,13 +100,13 @@ const MemberHome = () => {
           <h3 className="text-lg font-bold mb-4">Quick Links</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {quickLinks.map((link) => (
-              <a
+              <Link
                 key={link.id}
-                href={link.link}
+                to={link.link}
                 className="block bg-blue-500 text-white text-center py-3 rounded-lg hover:bg-blue-600"
               >
                 {link.title}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

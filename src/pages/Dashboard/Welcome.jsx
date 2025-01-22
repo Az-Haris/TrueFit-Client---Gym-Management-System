@@ -1,7 +1,10 @@
 import { Button } from "flowbite-react";
 import { Link } from "react-router";
+import useAuth from "../../hooks/useAuth";
 
 const Welcome = () => {
+  const { user } = useAuth();
+
   return (
     <div className="flex flex-col items-center justify-center h-[calc(100vh-90px)] md:h-[calc(100vh-100px)] bg-gradient-to-br from-blue-500 to-purple-600 text-white py-5 px-2">
       {/* Welcome Message */}
@@ -15,7 +18,17 @@ const Welcome = () => {
       </p>
 
       {/* Call-to-Action Button */}
-      <Link to={'admin-home'}>
+      <Link
+        to={`${
+          user.role === "member"
+            ? "member-home"
+            : user.role === "trainer"
+            ? "trainer-home"
+            : user.role === "admin"
+            ? "admin-home"
+            : ""
+        }`}
+      >
         <Button outline gradientDuoTone="purpleToBlue">
           Get Started
         </Button>

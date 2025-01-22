@@ -1,15 +1,20 @@
 import { Button, Spinner } from "flowbite-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import SocialLogin from "../components/SocialLogin";
 import { IoMdEyeOff, IoMdEye } from "react-icons/io";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const Login = () => {
+  const axiosPublic = useAxiosPublic();
+  const [loading, setLoading] = useState(false);
   const [showPass, setShowPass] = useState(false);
-  const { loginUser, setUser, loading, setLoading, setEmail } = useAuth();
+  const { loginUser, setUser, setEmail } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const emailRef = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,12 +25,16 @@ const Login = () => {
 
     // Login user
     loginUser(email, pass)
-      .then((result) => {
+      .then(async (result) => {
         const user = result.user;
-        setUser(user);
-        setLoading(false);
-        Swal.fire("Success!", "Successfully Logged In!", "success");
-        navigate(location?.state ? location.state : "/");
+
+        // Save Last login time
+        await axiosPublic.patch(`/users/${user.email}`).then((response) => {
+          setUser(response.data.user);
+          setLoading(false);
+          Swal.fire("Success!", "Successfully Logged In!", "success");
+          navigate(location?.state ? location.state : "/");
+        });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -50,6 +59,7 @@ const Login = () => {
       <input
         type="email"
         name="email"
+        ref={emailRef}
         autoComplete="username"
         className="w-full px-3 py-2 border border-gray-800 rounded-lg"
         placeholder="Email"
@@ -75,12 +85,17 @@ const Login = () => {
       </div>
 
       <div className="w-full flex justify-between text-sm mt-[-8px]">
-        <Link to={"/forgot-pass"}>Forgot your password?</Link>
+        <Link
+          onClick={() => setEmail(emailRef.current.value)}
+          to={"/forgot-pass"}
+        >
+          Forgot your password?
+        </Link>
         <Link to={"/signup"}>Create account</Link>
       </div>
       <Button type="submit" color="blue" className="px-5 mt-4">
         {loading ? (
-          <Spinner color="info" aria-label="Info spinner example" />
+          <Spinner color="success" aria-label="Success spinner example" />
         ) : (
           <span>Login</span>
         )}

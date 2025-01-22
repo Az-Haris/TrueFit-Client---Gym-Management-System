@@ -1,6 +1,6 @@
 import "../index.css";
 import { Link, NavLink } from "react-router";
-import { Button } from "flowbite-react";
+import { Button, Spinner } from "flowbite-react";
 import { BiMenuAltRight } from "react-icons/bi";
 import { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
@@ -10,8 +10,7 @@ import Swal from "sweetalert2";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
-  const { user, logOut, setLoading } = useAuth();
-
+  const { user, logOut, setLoading, loading } = useAuth();
 
   return (
     <div className="navbar container mx-auto px-3 flex items-center justify-between py-5 font-medium">
@@ -38,63 +37,77 @@ const Navbar = () => {
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
 
-        <NavLink to={"/dashboard"} className="flex flex-col items-center gap-1">
-          <p>Dashboard</p>{" "}
-          <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
-        </NavLink>
+        {user && (
+          <NavLink
+            to={"/dashboard"}
+            className="flex flex-col items-center gap-1"
+          >
+            <p>Dashboard</p>{" "}
+            <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
+          </NavLink>
+        )}
       </ul>
 
       <div className="flex items-center gap-3">
-        {user ? (
-          <div className="group relative">
-            <div className="w-10 h-10 rounded-full border border-blue-500 overflow-hidden">
-              {user.photoURL && (
-                <img
-                  className="w-full object-cover"
-                  alt={user?.displayName}
-                  src={user?.photoURL}
-                />
-              )}
-            </div>
-
-            <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4 z-10">
-              <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 border rounded-md">
-                <p className="cursor-pointer hover:text-black">My Profile</p>
-                <p className="cursor-pointer hover:text-black">Orders</p>
-                <p
-                  onClick={() => {
-                    logOut()
-                      .then(() => {
-                        setLoading(false);
-                        Swal.fire(
-                          "Success!",
-                          "You're Logged Out Successfully",
-                          "success",
-                        );
-                      })
-                      .catch((error) => {
-                        const errorCode = error.code;
-                        const errorMessage = error.message;
-                        Swal.fire(
-                          "Error!",
-                          `${errorCode} ${errorMessage}`,
-                          "error",
-                        );
-                      });
-                  }}
-                  className="cursor-pointer hover:text-black"
-                >
-                  Logout
-                </p>
-              </div>
-            </div>
-          </div>
+        {loading ? (
+          <Spinner color="info" aria-label="Info spinner example" />
         ) : (
-          <Link to={"/login"}>
-            <Button size="sm" color="blue">
-              Login
-            </Button>
-          </Link>
+          <>
+            {user ? (
+              <div className="group relative">
+                <div className="w-10 h-10 rounded-full border border-blue-500 overflow-hidden">
+                  {user.photoURL && (
+                    <img
+                      className="w-full object-cover"
+                      alt={user?.displayName}
+                      src={user?.photoURL}
+                    />
+                  )}
+                </div>
+
+                <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4 z-10">
+                  <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 border rounded-md">
+                    <p className="cursor-pointer hover:text-black">
+                      My Profile
+                    </p>
+                    <p className="cursor-pointer hover:text-black">Orders</p>
+                    <p
+                      onClick={() => {
+                        logOut()
+                          .then(() => {
+                            setLoading(false);
+                            Swal.fire(
+                              "Success!",
+                              "You're Logged Out Successfully",
+                              "success",
+                            );
+                          })
+                          .catch((error) => {
+                            const errorCode = error.code;
+                            const errorMessage = error.message;
+                            setLoading(false);
+                            Swal.fire(
+                              "Error!",
+                              `${errorCode} ${errorMessage}`,
+                              "error",
+                            );
+                          });
+                      }}
+                      className="cursor-pointer hover:text-black"
+                    >
+                      Logout
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <Link to={"/login"}>
+                <Button size="sm" color="blue">
+                  Login
+                </Button>
+              </Link>
+            )}
+          </>
         )}
 
         <BiMenuAltRight
@@ -145,13 +158,16 @@ const Navbar = () => {
             >
               Forum
             </NavLink>
-            <NavLink
-              onClick={() => setVisible(false)}
-              to={"/dashboard"}
-              className="py-2 pl-5 border"
-            >
-              Dashboard
-            </NavLink>
+
+            {user && (
+              <NavLink
+                onClick={() => setVisible(false)}
+                to={"/dashboard"}
+                className="py-2 pl-5 border"
+              >
+                Dashboard
+              </NavLink>
+            )}
           </div>
         </div>
       </div>

@@ -7,19 +7,21 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { imageUpload } from "../utils/imageUpload";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const SignUp = () => {
+  const axiosPublic = useAxiosPublic();
+  const [loading, setLoading] = useState(false)
   const [showPass, setShowPass] = useState(false);
-  const { registerNewUser, updateUser, setUser, loading, setLoading } =
+  const { registerNewUser, updateUser, setUser } =
     useAuth();
   const navigate = useNavigate();
-  const location = useLocation()
+  const location = useLocation();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -31,24 +33,32 @@ const SignUp = () => {
 
       // Register User
       registerNewUser(data.email, data.password)
-        .then((result) => {
-          const user = result.user;
+        .then(() => {
 
           // Update user info with name and photo
           updateUser({ displayName: data.name, photoURL })
-            .then(() => {
-              const updatedUser = {
-                ...user,
-                displayName: data.name,
-              };
-              setUser(updatedUser);
-              setLoading(false);
-              Swal.fire(
-                "Success!",
-                "Successfully Registered!",
-                "success",
-              );
-              navigate(location?.state ? location.state : "/");
+            .then(async () => {             
+
+              // Save user to db
+              await axiosPublic
+                .post("/users", {
+                  email: data.email,
+                  displayName: data.name,
+                  photoURL,
+                  authMethod: "email-password",
+                })
+                .then((result) => {
+                  setUser(result.data.user);
+                  setLoading(false);
+                  Swal.fire("Success!", "Successfully Registered!", "success");
+                  navigate(location?.state ? location.state : "/");
+                })
+                .catch((error) => {
+                  setLoading(false);
+                  const errorCode = error.code;
+                  const errorMessage = error.message;
+                  Swal.fire("Error!", `${errorCode} ${errorMessage}`, "error");
+                });
             })
             .catch((error) => {
               setLoading(false);

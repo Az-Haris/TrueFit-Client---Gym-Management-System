@@ -26,7 +26,7 @@ const Banner = () => {
       description:
         "Join a supportive community for inspiration and shared success.",
       buttonText: "Join the Community",
-      buttonLink: "/community",
+      buttonLink: "/forum",
     },
   ];
 
