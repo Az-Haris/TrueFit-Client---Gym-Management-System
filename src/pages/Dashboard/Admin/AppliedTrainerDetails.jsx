@@ -26,14 +26,16 @@ const AppliedTrainerDetails = () => {
     setConfirmLoading(true);
     // Handle confirm logic here
     const response = await axiosSecure.patch(`/confirm/${email}`);
-
+    
     if (response.status === 200) {
       Swal.fire("Success!", "Confirmed Trainer Successfully!", "success");
       setConfirmLoading(false);
       navigate("/dashboard/applied-trainers");
+    } else {
+      Swal.fire("Error!", "Error Confirming Trainer!", "error");
+      setConfirmLoading(false);
+      navigate("/dashboard/applied-trainers");
     }
-    Swal.fire("Error!", "Error Confirming Trainer!", "error");
-    setConfirmLoading(false);
   };
 
   const handleReject = () => {
@@ -79,14 +81,12 @@ const AppliedTrainerDetails = () => {
       ) : (
         <>
           <div className="flex flex-col md:flex-row gap-6">
-            <div className="w-40 h-36 rounded-full border border-blue-500 overflow-hidden">
-              <img
-                src={trainerDetails?.photoURL}
-                alt="Profile"
-                className="h-full object-cover w-full"
-              />
-            </div>
-            <div className="w-full">
+            <img
+              src={trainerDetails?.photoURL}
+              alt="Profile"
+              className="w-40 h-40 rounded-full object-cover shadow-lg"
+            />
+            <div className="flex-1">
               <p className="text-lg font-semibold text-gray-700">
                 Name: {trainerDetails?.fullName}
               </p>

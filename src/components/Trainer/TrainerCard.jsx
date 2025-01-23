@@ -7,13 +7,13 @@ const TrainerCard = ({ trainer }) => {
   return (
     <div className="bg-white shadow-lg rounded-lg p-6 text-center border hover:shadow-2xl relative">
       <img
-        src={trainer.image}
-        alt={trainer.name}
+        src={trainer.photoURL}
+        alt={trainer.fullName || trainer.displayName}
         className="w-32 h-32 mx-auto rounded-full object-cover border"
       />
-      <h3 className="text-xl font-bold mt-4">{trainer.name}</h3>
+      <h3 className="text-xl font-bold mt-4">{trainer.fullName || trainer.displayName}</h3>
       <p className="text-gray-500">{trainer.experience} Years of Experience</p>
-      <p className="text-gray-700 mt-2">{trainer.specialization}</p>
+      <p className="text-gray-700 mt-2">{trainer.skills.map(skill=>skill.label).join(', ')}</p>
       <p
         className={`mt-2 ${
           trainer.slots > 0 ? "text-green-600" : "text-red-600"
@@ -24,7 +24,7 @@ const TrainerCard = ({ trainer }) => {
           : "Fully Booked"}
       </p>
       <div className="flex justify-center mt-4">
-        <Link to={`/trainers/${trainer.slug}`}>
+        <Link to={`/trainers/${trainer._id}`}>
           <Button>Know More</Button>
         </Link>
       </div>

@@ -1,76 +1,19 @@
+import { useQuery } from "@tanstack/react-query";
 import ScrollToTop from "../components/ScrollToTop";
 import Title from "../components/Title";
 import TrainerCard from "../components/Trainer/TrainerCard";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import Loading from "../components/Loading";
 
 const AllTrainer = () => {
-  const trainers = [
-    {
-      id: 1,
-      name: "Sarah Thompson",
-      image: "https://via.placeholder.com/150", // Replace with actual image URLs
-      experience: 8,
-      specialization: "Strength Training, Weight Management",
-      slots: 5,
-      linkedin: "https://www.linkedin.com/in/sarah-thompson",
-      instagram: "https://www.instagram.com/sarah_thompson",
-      slug: "sarah-thompson",
+  const axiosPublic = useAxiosPublic();
+  const { data: trainers = [], isLoading } = useQuery({
+    queryKey: ["all-trainers"],
+    queryFn: async () => {
+      const result = await axiosPublic.get("/trainers");
+      return result.data;
     },
-    {
-      id: 2,
-      name: "Michael Johnson",
-      image: "https://via.placeholder.com/150",
-      experience: 10,
-      specialization: "Yoga, Meditation",
-      slots: 2,
-      linkedin: "https://www.linkedin.com/in/michael-johnson",
-      instagram: "https://www.instagram.com/michael_johnson",
-      slug: "michael-johnson",
-    },
-    {
-      id: 3,
-      name: "Emily Davis",
-      image: "https://via.placeholder.com/150",
-      experience: 6,
-      specialization: "Cardio, HIIT, Endurance Training",
-      slots: 0,
-      linkedin: "https://www.linkedin.com/in/emily-davis",
-      instagram: "https://www.instagram.com/emily_davis",
-      slug: "emily-davis",
-    },
-    {
-      id: 4,
-      name: "Daniel Lee",
-      image: "https://via.placeholder.com/150",
-      experience: 12,
-      specialization: "Bodybuilding, Nutrition",
-      slots: 4,
-      linkedin: "https://www.linkedin.com/in/daniel-lee",
-      instagram: "https://www.instagram.com/daniel_lee",
-      slug: "daniel-lee",
-    },
-    {
-      id: 5,
-      name: "Sophia Martinez",
-      image: "https://via.placeholder.com/150",
-      experience: 7,
-      specialization: "Pilates, Flexibility Training",
-      slots: 3,
-      linkedin: "https://www.linkedin.com/in/sophia-martinez",
-      instagram: "https://www.instagram.com/sophia_martinez",
-      slug: "sophia-martinez",
-    },
-    {
-      id: 6,
-      name: "James Carter",
-      image: "https://via.placeholder.com/150",
-      experience: 9,
-      specialization: "CrossFit, Functional Fitness",
-      slots: 6,
-      linkedin: "https://www.linkedin.com/in/james-carter",
-      instagram: "https://www.instagram.com/james_carter",
-      slug: "james-carter",
-    },
-  ];
+  });
 
   return (
     <>
@@ -83,11 +26,15 @@ const AllTrainer = () => {
           }
         ></Title>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 px-3">
-          {trainers.map((trainer) => (
-            <TrainerCard key={trainer.id} trainer={trainer} />
-          ))}
-        </div>
+        {isLoading ? (
+          <Loading></Loading>
+        ) : (
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 px-3">
+            {trainers.map((trainer) => (
+              <TrainerCard key={trainer.id} trainer={trainer} />
+            ))}
+          </div>
+        )}
       </div>
     </>
   );
