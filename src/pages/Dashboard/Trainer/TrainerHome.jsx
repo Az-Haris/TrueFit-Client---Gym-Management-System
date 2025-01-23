@@ -1,5 +1,7 @@
+import useAuth from "../../../hooks/useAuth";
+
 const TrainerHome = () => {
-  const trainerName = "John Doe"; // Replace with dynamic name
+  const { user } = useAuth();
   const stats = {
     totalSlots: 12,
     bookedSlots: 8,
@@ -27,14 +29,16 @@ const TrainerHome = () => {
       {/* Welcome Section */}
       <div className="bg-white shadow-md rounded-lg p-3 sm:p-6 mb-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-          <img
-            src="https://via.placeholder.com/80"
-            alt="Trainer Profile"
-            className="w-16 h-16 rounded-full object-cover"
-          />
+          {user && (
+            <img
+              src={user.photoURL}
+              alt={user?.displayName}
+              className="w-16 h-16 rounded-full object-cover"
+            />
+          )}
           <div>
             <h1 className="text-2xl font-bold text-gray-800">
-              Welcome, {trainerName}!
+              Welcome, {user?.displayName}!
             </h1>
             <p className="text-gray-600">Your dashboard at a glance.</p>
           </div>

@@ -77,11 +77,7 @@ const Router = createBrowserRouter([
       },
       {
         path: "/forum",
-        element: (
-          <AdminTrainerRoute>
-            <Forum></Forum>
-          </AdminTrainerRoute>
-        ),
+        element: <Forum></Forum>,
       },
       {
         path: "/payment",
@@ -132,7 +128,7 @@ const Router = createBrowserRouter([
         ),
       },
       {
-        path: "applied-trainers/:id",
+        path: "applied-trainers/:email",
         element: (
           <AdminRoute>
             <AppliedTrainerDetails></AppliedTrainerDetails>
@@ -183,7 +179,11 @@ const Router = createBrowserRouter([
       },
       {
         path: "add-forum",
-        element: <AddForum></AddForum>,
+        element: (
+          <AdminTrainerRoute>
+            <AddForum></AddForum>
+          </AdminTrainerRoute>
+        ),
       },
       {
         path: "member-home",

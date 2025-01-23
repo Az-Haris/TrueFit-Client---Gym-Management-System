@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
   const { user, logOut, setLoading, loading } = useAuth();
-  console.log(user)
+  
 
   return (
     <div className="navbar container mx-auto px-3 flex items-center justify-between py-5 font-medium">

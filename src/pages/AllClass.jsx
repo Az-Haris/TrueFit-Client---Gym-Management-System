@@ -71,10 +71,10 @@ const AllClass = () => {
                 </div>
 
                 <div className="flex justify-end -space-x-2 mt-3">
-                  {trainers.slice(0, 5).map((trainer) => (
+                  {trainers.slice(0, 5).map((trainer, idx) => (
                     <Link
                       to={`/trainer/${trainer.id}`}
-                      key={trainer.id}
+                      key={idx}
                       className="relative block w-12 h-12 rounded-full border border-blue-400 hover:ring-2 hover:ring-blue-500 overflow-hidden hover:z-10 transition duration-200"
                     >
                       <img
