@@ -18,7 +18,16 @@ const TrainerDetails = () => {
     },
   });
 
-  console.log(trainerData);
+  const {data: slots = []} = useQuery({
+    queryKey: ["slots"],
+    queryFn: async()=>{
+      const result = await axiosPublic.get(`/slots/${id}`)
+      return result.data;
+    }
+  })
+
+console.log(slots)
+  
 
   return (
     <div className="container mx-auto px-3 py-6">
@@ -67,12 +76,12 @@ const TrainerDetails = () => {
               Book For Available Slots
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {trainerData?.availableDays?.map((day, index) => (
-                <Link
-                  key={index}
-                  className="bg-blue-500 text-white font-medium py-2 px-4 rounded hover:bg-blue-600 transition text-center"
-                >
-                  {day.label} ({trainerData?.availableTime})
+              {slots?.map((slot) => (
+                <Link to={`book-trainer/${slot._id}`}  key={slot._id} className="rounded-lg p-3 border hover:border-blue-300 hover:bg-blue-50 shadow-lg space-y-1">
+                  <p><strong>Slot Name : </strong>{slot.slotName}</p>
+                  <p><strong>Slot Time : </strong>{slot.slotTime}</p>
+                  <p><strong>Slot Days : </strong>{slot.selectedDays.map(day=>day.label).join(', ')}</p>
+                  <p><strong>Classes Include : </strong>{slot.selectedClasses.map(day=>day.label).join(', ')}</p>
                 </Link>
               ))}
             </div>

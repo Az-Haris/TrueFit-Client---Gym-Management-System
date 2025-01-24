@@ -1,9 +1,13 @@
 import { Button, Card } from "flowbite-react";
-import { useLocation, useNavigate } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
+import ScrollToTop from "../components/ScrollToTop";
 
 const TrainerBooked = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const param = useParams()
+  console.log(param.id)
+  console.log(param.slotId)
 
   // Data from Trainer Details Page
   const trainerName = "Alexandra Reid"; // Replace with dynamic data if needed
@@ -63,6 +67,7 @@ const TrainerBooked = () => {
 
   return (
     <div className="container mx-auto px-3">
+      <ScrollToTop></ScrollToTop>
       {/* Trainer and Slot Info */}
       <div className="bg-white shadow-lg rounded-lg p-5 mb-8">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">
