@@ -18,16 +18,13 @@ const TrainerDetails = () => {
     },
   });
 
-  const {data: slots = []} = useQuery({
+  const { data: slots = [] } = useQuery({
     queryKey: ["slots"],
-    queryFn: async()=>{
-      const result = await axiosPublic.get(`/slots/${id}`)
+    queryFn: async () => {
+      const result = await axiosPublic.get(`/slots/${id}`);
       return result.data;
-    }
-  })
-
-console.log(slots)
-  
+    },
+  });
 
   return (
     <div className="container mx-auto px-3 py-6">
@@ -63,7 +60,11 @@ console.log(slots)
                   <li key={index}>{item.label}</li>
                 ))}
               </ul>
-              <p className="mt-4 text-gray-600">
+              <p
+                className={`mt-4 ${
+                  trainerData?.slots > 0 ? "text-gray-600" : "text-red-500"
+                } `}
+              >
                 <strong>Slots Left: </strong>
                 {trainerData?.slots}
               </p>
@@ -75,16 +76,44 @@ console.log(slots)
             <h3 className="text-2xl font-bold mb-4">
               Book For Available Slots
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {slots?.map((slot) => (
-                <Link to={`book-trainer/${slot._id}`}  key={slot._id} className="rounded-lg p-3 border hover:border-blue-300 hover:bg-blue-50 shadow-lg space-y-1">
-                  <p><strong>Slot Name : </strong>{slot.slotName}</p>
-                  <p><strong>Slot Time : </strong>{slot.slotTime}</p>
-                  <p><strong>Slot Days : </strong>{slot.selectedDays.map(day=>day.label).join(', ')}</p>
-                  <p><strong>Classes Include : </strong>{slot.selectedClasses.map(day=>day.label).join(', ')}</p>
-                </Link>
-              ))}
-            </div>
+            {trainerData?.slots > 0 ? (
+              <>
+                {slots.length ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {slots.map((slot) => (
+                      <Link
+                        to={`book-trainer/${slot._id}`}
+                        key={slot._id}
+                        className="rounded-lg p-3 border hover:border-blue-300 hover:bg-blue-50 shadow-lg space-y-1"
+                      >
+                        <p>
+                          <strong>Slot Name : </strong>
+                          {slot.slotName}
+                        </p>
+                        <p>
+                          <strong>Slot Time : </strong>
+                          {slot.slotTime}
+                        </p>
+                        <p>
+                          <strong>Slot Days : </strong>
+                          {slot.selectedDays.map((day) => day.label).join(", ")}
+                        </p>
+                        <p>
+                          <strong>Classes Include : </strong>
+                          {slot.selectedClasses
+                            .map((day) => day.label)
+                            .join(", ")}
+                        </p>
+                      </Link>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-red-500">No Slots For This Trainer</p>
+                )}
+              </>
+            ) : (
+              <p className="text-red-500">No Slots Available for Booking</p>
+            )}
           </div>
         </>
       )}

@@ -29,11 +29,11 @@ const TrainerCard = ({ trainer }) => {
         </Link>
       </div>
       <div className="absolute top-12 right-10 flex flex-col gap-3">
-        <a href={trainer.linkedin} target="_blank" rel="noopener noreferrer">
-          <FaLinkedin className="text-blue-600 text-4xl" />
+        <a href={trainer.linkedin || "#"} target="_blank" rel="noopener noreferrer">
+          <FaLinkedin className="text-blue-600 text-4xl transform hover:scale-105 transition duration-150" />
         </a>
-        <a href={trainer.instagram} target="_blank" rel="noopener noreferrer">
-          <FaInstagram className="text-pink-500 text-4xl" />
+        <a href={trainer.instagram || "#"} target="_blank" rel="noopener noreferrer">
+          <FaInstagram className="text-pink-500 text-4xl transform hover:scale-105 transition duration-150" />
         </a>
       </div>
     </div>

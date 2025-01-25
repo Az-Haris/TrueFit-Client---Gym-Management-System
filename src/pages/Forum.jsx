@@ -10,7 +10,7 @@ const Forum = () => {
   const axiosPublic = useAxiosPublic();
 
   // Fetch posts
-  const { data, isLoading, isError, refetch } = useQuery({
+  const { data = {}, isLoading, isError, refetch } = useQuery({
     queryKey: ["forumPosts", currentPage],
     queryFn: async () => {
       const result = await axiosPublic.get(`/forum?page=${currentPage}`);
@@ -73,7 +73,7 @@ const Forum = () => {
           description="Stay informed with the latest posts and valuable discussions."
         />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 px-3">
-          {posts.map((post) => (
+          {posts?.map((post) => (
             <div
               key={post._id}
               className="border hover:shadow-2xl p-4 rounded-md flex flex-col justify-between"

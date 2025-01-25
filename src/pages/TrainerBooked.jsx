@@ -1,17 +1,32 @@
 import { Button, Card } from "flowbite-react";
-import { useLocation, useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import ScrollToTop from "../components/ScrollToTop";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const TrainerBooked = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  const axiosPublic = useAxiosPublic()
   const param = useParams()
-  console.log(param.id)
-  console.log(param.slotId)
+  const trainerId = param.id;
+  const slotId = param.slotId;
 
-  // Data from Trainer Details Page
-  const trainerName = "Alexandra Reid"; // Replace with dynamic data if needed
-  const selectedSlot = location.state?.slot || "No slot selected";
+  const { data: trainerData = {}} = useQuery({
+    queryKey: ["trainerData"],
+    queryFn: async () => {
+      const result = await axiosPublic.get(`/trainers/${trainerId}`);
+      return result.data;
+    },
+  });
+
+  const {data: slot={}} = useQuery({
+    queryKey: ["slot"],
+    queryFn: async()=>{
+      const result = await axiosPublic.get(`/slot/${slotId}`)
+      return result.data;
+    }
+  })
+
 
   // Membership packages
   const packages = [
@@ -61,7 +76,7 @@ const TrainerBooked = () => {
   const handleJoinNow = (selectedPackage) => {
     
     navigate("/payment", {
-      state: { trainerName, selectedSlot, selectedPackage },
+      state: { trainerData, slot, selectedPackage },
     });
   };
 
@@ -74,10 +89,10 @@ const TrainerBooked = () => {
           Trainer Booking Details
         </h2>
         <p className="text-gray-700 mb-2 text-lg">
-          <strong>Trainer Name:</strong> {trainerName}
+          <strong>Trainer Name:</strong> {trainerData.fullName || trainerData.displayName}
         </p>
         <p className="text-gray-700 mb-2 text-lg">
-          <strong>Selected Slot:</strong> {selectedSlot}
+          <strong>Selected Slot:</strong> {slot.slotName}
         </p>
       </div>
 
@@ -144,7 +159,7 @@ const TrainerBooked = () => {
 
               <Button
                 color="blue"
-                onClick={()=>handleJoinNow(pkg.name)}
+                onClick={()=>handleJoinNow(pkg)}
               >
                 Choose plan
               </Button>

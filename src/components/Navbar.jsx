@@ -59,7 +59,7 @@ const Navbar = () => {
                 <div className="w-10 h-10 rounded-full border border-blue-500 overflow-hidden">
                   {user.photoURL && (
                     <img
-                      className="w-full object-cover"
+                      className="w-full h-full object-cover"
                       alt={user?.displayName}
                       src={user.photoURL}
                     />

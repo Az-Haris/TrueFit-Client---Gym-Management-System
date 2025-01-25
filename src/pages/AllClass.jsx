@@ -25,7 +25,14 @@ const AllClass = () => {
     },
   });
 
-  const trainers = [{}, {}, {}];
+  const { data: trainers = [] } = useQuery({
+    queryKey: ["all-trainers"],
+    queryFn: async () => {
+      const result = await axiosPublic.get("/trainers");
+      return result.data;
+    },
+  });
+
 
   return (
     <>
@@ -70,20 +77,27 @@ const AllClass = () => {
                   <p className="text-gray-700">{clas.details}</p>
                 </div>
 
-                <div className="flex justify-end -space-x-2 mt-3">
-                  {trainers.slice(0, 5).map((trainer, idx) => (
+                <div className="flex justify-between items-center mt-3">
+                <span className="text-gray-500"><span className="text-2xl">{clas.bookings}</span> Bookings</span>
+                  <div className="flex -space-x-2">
+                  {clas.trainerId.slice(0, 5).map((trainer, idx) => (
                     <Link
-                      to={`/trainer/${trainer.id}`}
+                      to={`/trainers/${trainer}`}
                       key={idx}
                       className="relative block w-12 h-12 rounded-full border border-blue-400 hover:ring-2 hover:ring-blue-500 overflow-hidden hover:z-10 transition duration-200"
                     >
                       <img
-                        src={trainer.photoURL}
-                        alt={trainer.name}
+                        src={
+                          trainers.find(trainerInfo => trainerInfo._id === trainer)?.photoURL
+                        }
+                        alt={
+                          trainers.find(trainerInfo => trainerInfo._id === trainer)?.fullName
+                        }
                         className="object-cover w-full h-full bg-white"
                       />
                     </Link>
                   ))}
+                  </div>
                 </div>
               </div>
             ))}

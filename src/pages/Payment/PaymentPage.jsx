@@ -1,11 +1,67 @@
-import PaymentForm from "./PaymentForm";
+
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import CheckoutForm from "./CheckoutForm";
+import { useLocation } from "react-router";
+import useAuth from "../../hooks/useAuth";
+import ScrollToTop from "../../components/ScrollToTop";
+
+// Stripe public key
+const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 
 const PaymentPage = () => {
-  return (
-    <div>
-      payment page-header
+  const location = useLocation()
+  const {user} = useAuth()
+  const trainerData = location.state.trainerData;
+  const slot = location.state.slot;
+  const selectedPackage = location.state.selectedPackage;
 
-      <PaymentForm></PaymentForm>
+  
+  
+  
+  return (
+    <div className="max-w-xl mx-auto mt-10 bg-white shadow-lg p-6 rounded-lg">
+      <ScrollToTop></ScrollToTop>
+      <h1 className="text-2xl font-semibold text-gray-800 mb-6">Payment Page 💳</h1>
+      <div className="mb-4">
+        <div className="flex justify-between items-center border-b pb-2">
+          <span className="font-semibold text-gray-600">Trainer Name:</span>
+          <span>{trainerData?.fullName || trainerData?.displayName}</span>
+        </div>
+        <div className="flex justify-between items-center border-b pb-2 mt-4">
+          <span className="font-semibold text-gray-600">Slot Name:</span>
+          <span>{slot?.slotName}</span>
+        </div>
+        <div className="flex justify-between items-center border-b pb-2 mt-4">
+          <span className="font-semibold text-gray-600">Package Name:</span>
+          <span>{selectedPackage?.name}</span>
+        </div>
+        <div className="flex justify-between items-center border-b pb-2 mt-4">
+          <span className="font-semibold text-gray-600">Price:</span>
+          <span>${selectedPackage?.price}</span>
+        </div>
+        <div className="flex justify-between items-center border-b pb-2 mt-4">
+          <span className="font-semibold text-gray-600">Your Name:</span>
+          <span>{user?.displayName}</span>
+        </div>
+        <div className="flex justify-between items-center border-b pb-2 mt-4">
+          <span className="font-semibold text-gray-600">Email:</span>
+          <span>{user?.email}</span>
+        </div>
+      </div>
+      <Elements stripe={stripePromise}>
+        <CheckoutForm
+          price={selectedPackage?.price}
+          userName={user?.displayName}
+          userEmail={user?.email}
+          trainerName={trainerData?.fullName || trainerData?.displayName}
+          slotName={slot?.slotName}
+          packageName={selectedPackage?.name}
+          slotId = {slot._id}
+          trainerId = {trainerData._id}
+          selectedClasses = {slot.selectedClasses}
+        />
+      </Elements>
     </div>
   );
 };

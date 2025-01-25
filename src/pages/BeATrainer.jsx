@@ -47,6 +47,8 @@ const BeATrainer = () => {
   const userEmail = user?.email;
   const [formData, setFormData] = useState({
     fullName: "",
+    linkedin: "",
+    instagram: "",
     age: "",
     experience: "",
     profileImage: null,
@@ -79,6 +81,8 @@ const BeATrainer = () => {
 
     const {
       fullName,
+      linkedin,
+      instagram,
       age,
       experience,
       skills,
@@ -97,6 +101,8 @@ const BeATrainer = () => {
 
       const applicantData = {
         fullName,
+        linkedin,
+        instagram,
         userEmail,
         photoURL,
         age,
@@ -122,8 +128,8 @@ const BeATrainer = () => {
   useEffect(() => {
     const fetchExistingApplicant = async () => {
       const result = await axiosPublic.get(`/application/${userEmail}`);
-      
-      if (result.data || user?.role==='admin' || user?.role==='trainer') {
+
+      if (result.data || user?.role === "admin" || user?.role === "trainer") {
         setEligible(false);
       } else {
         setEligible(true);
@@ -170,6 +176,30 @@ const BeATrainer = () => {
                 value={userEmail}
                 readOnly
                 className="w-full border p-2 rounded-lg bg-gray-100"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="block font-medium mb-1">LinkedIn URL</label>
+              <input
+                type="text"
+                name="linkedin"
+                value={formData.linkedin}
+                onChange={handleInputChange}
+                className="w-full border p-2 rounded-lg"
+                required
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="block font-medium mb-1">Instagram URL</label>
+              <input
+                type="text"
+                name="instagram"
+                value={formData.instagram}
+                onChange={handleInputChange}
+                className="w-full border p-2 rounded-lg"
+                required
               />
             </div>
 
@@ -261,13 +291,18 @@ const BeATrainer = () => {
               />
             </div>
 
-            <PrivateRoute><Button type="submit" className="px-10 mt-10" color="blue">
-              {loading ? (
-                <Spinner color="success" aria-label="Success spinner example" />
-              ) : (
-                "Apply"
-              )}
-            </Button></PrivateRoute>
+            <PrivateRoute>
+              <Button type="submit" className="px-10 mt-10" color="blue">
+                {loading ? (
+                  <Spinner
+                    color="success"
+                    aria-label="Success spinner example"
+                  />
+                ) : (
+                  "Apply"
+                )}
+              </Button>
+            </PrivateRoute>
           </form>
         ) : (
           <p className="text-red-500 text-center">

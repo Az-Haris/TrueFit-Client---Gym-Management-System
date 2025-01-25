@@ -13,7 +13,6 @@ const AddSlot = () => {
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
   const [slotData, setSlotData] = useState({
-    trainerId: user._id,
     slotName: "",
     slotTime: "",
     selectedClasses: [],
@@ -51,11 +50,17 @@ const AddSlot = () => {
     e.preventDefault();
     setLoading(true);
 
+    const slotDataWithTrainerId = {
+      ...slotData,
+      trainerId: user._id,
+    };
+
     // Add logic to save the data to the database
-    const result = await axiosSecure.post("/add-slot", slotData);
-    if (result.status === 200) {
-      Swal.fire("Success!", "Successfully Registered!", "success");
-      setLoading(false)
+    const result = await axiosSecure.post("/add-slot", slotDataWithTrainerId);
+ 
+    if (result.data.modifiedCount > 0 || result.data.matchedCount > 0) {
+      Swal.fire("Success!", "Successfully Added Slot!", "success");
+      setLoading(false);
       setSlotData({
         slotName: "",
         slotTime: "",
@@ -64,7 +69,7 @@ const AddSlot = () => {
       });
     } else {
       Swal.fire("Error!", "Error Adding Slot. Try Again!", "error");
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -156,7 +161,7 @@ const AddSlot = () => {
           </label>
           <Select
             options={classes.map((clas) => ({
-              value: clas.className,
+              value: clas._id,
               label: clas.className,
             }))}
             isMulti

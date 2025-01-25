@@ -23,6 +23,7 @@ const AddClass = () => {
       className,
       details,
       photoURL,
+      bookings: 0,
     }
 
     // Add logic here to save data to the database

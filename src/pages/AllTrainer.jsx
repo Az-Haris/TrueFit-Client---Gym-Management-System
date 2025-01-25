@@ -31,7 +31,7 @@ const AllTrainer = () => {
         ) : (
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 px-3">
             {trainers.map((trainer) => (
-              <TrainerCard key={trainer.id} trainer={trainer} />
+              <TrainerCard key={trainer._id} trainer={trainer} />
             ))}
           </div>
         )}
