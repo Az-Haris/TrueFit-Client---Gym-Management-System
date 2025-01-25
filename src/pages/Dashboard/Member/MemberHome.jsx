@@ -7,17 +7,18 @@ const MemberHome = () => {
   const { user } = useAuth();
   const userEmail = user?.email;
   const axiosSecure = useAxiosSecure();
-  const { data } = useQuery({
-    queryKey: ["bookingInfo"],
-    queryFn: async () => {
-      const result = await axiosSecure.get(`/bookings/${userEmail}`);
-      return result.data;
-    },
-  });
   const { data: userData = {} } = useQuery({
     queryKey: ["member-info"],
     queryFn: async () => {
       const result = await axiosSecure.get(`/users/${user?.email}`);
+      return result.data;
+    },
+  });
+  const { data } = useQuery({
+    queryKey: ["bookingInfo"],
+    enabled: userData?.subscription == !undefined,
+    queryFn: async () => {
+      const result = await axiosSecure.get(`/bookings/${userEmail}`);
       return result.data;
     },
   });
@@ -53,20 +54,34 @@ const MemberHome = () => {
         {/* Upcoming Bookings */}
         <div className="bg-white shadow-md rounded-lg p-3 sm:p-6 mb-6">
           <h3 className="text-lg font-bold mb-4">Upcoming Bookings</h3>
-          <div className="flex flex-col sm:flex-row gap-5">
-            <div className="p-3 border rounded-lg">
-              <p>
-                <strong>Name:</strong> {slotsInfo?.slotName || ""}
-              </p>
-              <p>
-                <strong>Time:</strong> {slotsInfo?.slotTime || ""}
-              </p>
-              <p>
-                <strong>Days:</strong>{" "}
-                {slotsInfo?.selectedDays?.map((day) => day.label).join(", ") || ""}
-              </p>
+          {data === undefined ? (
+            <div>
+              <p className="text-red-500">Haven&apos;t Booked Any Trainer. </p>
+              <Link
+                to={"/trainers"}
+                className=" text-blue-400 hover:text-blue-600"
+              >
+                Book a Trainer
+              </Link>
             </div>
-          </div>
+          ) : (
+            <div className="flex flex-col sm:flex-row gap-5">
+              <div className="p-3 border rounded-lg">
+                <p>
+                  <strong>Name:</strong> {slotsInfo?.slotName || ""}
+                </p>
+                <p>
+                  <strong>Time:</strong> {slotsInfo?.slotTime || ""}
+                </p>
+                <p>
+                  <strong>Days:</strong>{" "}
+                  {slotsInfo?.selectedDays
+                    ?.map((day) => day.label)
+                    .join(", ") || ""}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Quick Links */}

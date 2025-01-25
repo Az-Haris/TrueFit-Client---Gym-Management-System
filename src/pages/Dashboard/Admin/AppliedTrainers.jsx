@@ -29,7 +29,7 @@ const AppliedTrainers = () => {
       {isLoading ? (
         <Loading></Loading>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <>{trainer.length > 0 ? <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {trainer.map((trainer) => (
             <div
               key={trainer._id}
@@ -62,7 +62,7 @@ const AppliedTrainers = () => {
               </div>
             </div>
           ))}
-        </div>
+        </div> : <p className="text-red-500">Don&apos;t have any application.</p>}</>
       )}
     </div>
   );

@@ -1,12 +1,36 @@
+import { Link } from "react-router";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const TrainerHome = () => {
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  const trainerId = user?._id;
+  const { data: slots = [],  } = useQuery({
+    queryKey: ["slots"],
+    queryFn: async () => {
+      const result = await axiosSecure.get(`/slots/${trainerId}`);
+      return result.data;
+    },
+  });
+ 
+  const { data: forums = [],  } = useQuery({
+    queryKey: ["forums"],
+    queryFn: async () => {
+      const result = await axiosSecure.get('/trainer-forum');
+      return result.data;
+    },
+  });
+ 
+  
   const stats = {
-    totalSlots: 12,
-    bookedSlots: 8,
-    pendingApplications: 3,
+    totalSlots: slots.length,
+    AvailableSlots: user?.slots,
+    pendingApplications: forums?.length,
   };
+
+
   const upcomingBookings = [
     {
       id: 1,
@@ -52,16 +76,16 @@ const TrainerHome = () => {
           <p className="text-2xl font-bold text-blue-500">{stats.totalSlots}</p>
         </div>
         <div className="bg-white shadow-md rounded-lg p-3 sm:p-6">
-          <h2 className="text-lg font-semibold text-gray-800">Booked Slots</h2>
-          <p className="text-2xl font-bold text-green-500">
-            {stats.bookedSlots}
+          <h2 className="text-lg font-semibold text-gray-800">Available Slots</h2>
+          <p className="text-2xl font-bold text-red-500">
+            {stats.AvailableSlots}
           </p>
         </div>
         <div className="bg-white shadow-md rounded-lg p-3 sm:p-6">
           <h2 className="text-lg font-semibold text-gray-800">
-            Pending Applications
+            Forum Posts
           </h2>
-          <p className="text-2xl font-bold text-red-500">
+          <p className="text-2xl font-bold text-green-500">
             {stats.pendingApplications}
           </p>
         </div>
@@ -103,9 +127,9 @@ const TrainerHome = () => {
           View, add, or update your available slots to keep your schedule
           organized.
         </p>
-        <button className="bg-blue-500 text-white py-2 px-4 rounded-lg shadow hover:bg-blue-600">
+        <Link to={'/dashboard/manage-slots'} className="bg-blue-500 text-white py-2 px-4 rounded-lg shadow hover:bg-blue-600">
           Manage Slots
-        </button>
+        </Link>
       </div>
     </div>
   );

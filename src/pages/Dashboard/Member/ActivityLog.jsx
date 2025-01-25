@@ -78,7 +78,9 @@ const ActivityLog = () => {
                   </td>
                 </tr>
               ) : (
-                <p className="text-red-500 p-5">No updates today!</p>
+                <tr>
+                  <td className="text-red-500 p-2">No updates today!</td>
+                </tr>
               )}
             </tbody>
           </table>

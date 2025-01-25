@@ -1,69 +1,73 @@
-import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
+import Loading from "../../../components/Loading";
+import Swal from "sweetalert2";
 
 const ManageSlots = () => {
-  // Sample slots data (replace with dynamic data from backend)
-  const [slots, setSlots] = useState([
-    {
-      id: 1,
-      slotName: "Morning Slot",
-      slotTime: "8:00 AM - 9:00 AM",
-      bookedBy: { name: "John Doe", email: "johndoe@example.com" },
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+  const trainerId = user?._id;
+  const { data: slots = [], isLoading, refetch } = useQuery({
+    queryKey: ["slots"],
+    queryFn: async () => {
+      const result = await axiosSecure.get(`/slots/${trainerId}`);
+      return result.data;
     },
-    {
-      id: 2,
-      slotName: "Evening Slot",
-      slotTime: "5:00 PM - 6:00 PM",
-      bookedBy: null, // Unbooked slot
-    },
-    {
-      id: 3,
-      slotName: "Noon Slot",
-      slotTime: "12:00 PM - 1:00 PM",
-      bookedBy: { name: "Jane Smith", email: "janesmith@example.com" },
-    },
-  ]);
+  });
+  // console.log(slots);
 
   const handleDeleteSlot = (slotId) => {
-    const confirmation = window.confirm("Are you sure you want to delete this slot?");
-    if (confirmation) {
-      setSlots(slots.filter((slot) => slot.id !== slotId));
-      alert("Slot deleted successfully!");
-    }
+    Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            const result = await axiosSecure.delete(`/slots/${slotId}`);
+            if (result.status === 200) {
+              refetch();
+              Swal.fire({
+                title: "Deleted!",
+                text: "Slot has been deleted.",
+                icon: "success",
+              });
+            }
+          }
+        });
   };
 
   return (
-      <div>
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">Manage Slots</h2>
+    <div>
+      <h2 className="text-2xl font-bold text-gray-800 mb-6">Manage Slots</h2>
 
-        {/* Card Layout */}
+      {isLoading ? (
+        <Loading></Loading>
+      ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {slots.map((slot) => (
             <div
-              key={slot.id}
+              key={slot._id}
               className="bg-white border rounded-lg shadow p-4 flex flex-col justify-between"
             >
               <div>
-                <h3 className="text-lg font-semibold text-gray-800">
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">
                   {slot.slotName}
                 </h3>
-                <p className="text-sm text-gray-600 mb-2">
+                <p className="text-sm text-gray-600 mb-1">
                   <strong>Time:</strong> {slot.slotTime}
                 </p>
-                {slot.bookedBy ? (
-                  <div className="text-sm text-gray-800">
-                    <p>
-                      <strong>Booked By:</strong> {slot.bookedBy.name}
-                    </p>
-                    <p>
-                      <strong>Email:</strong> {slot.bookedBy.email}
-                    </p>
-                  </div>
-                ) : (
-                  <p className="text-sm text-gray-500 italic">Not Booked</p>
-                )}
+                <p className="text-sm text-gray-600">
+                  <strong>Days:</strong>{" "}
+                  {slot.selectedDays.map((day) => day.label).join(", ")}
+                </p>
               </div>
               <button
-                onClick={() => handleDeleteSlot(slot.id)}
+                onClick={() => handleDeleteSlot(slot._id)}
                 className="mt-4 bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded text-sm"
               >
                 Delete
@@ -71,13 +75,13 @@ const ManageSlots = () => {
             </div>
           ))}
         </div>
+      )}
 
-        {/* No Slots Message */}
-        {slots.length === 0 && (
-          <p className="text-center text-gray-500 mt-6">No slots available.</p>
-        )}
-      </div>
-    
+      {/* No Slots Message */}
+      {slots.length === 0 && (
+        <p className="text-gray-500">No slots available.</p>
+      )}
+    </div>
   );
 };
 
