@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import { Spinner } from "flowbite-react";
 import { useNavigate } from "react-router";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const CheckoutForm = ({
   price,
@@ -21,7 +21,7 @@ const CheckoutForm = ({
   const stripe = useStripe();
   const navigate = useNavigate()
   const elements = useElements();
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure()
 
   const classesId = selectedClasses.map(selectedClass => selectedClass.value)
 
@@ -31,7 +31,7 @@ const CheckoutForm = ({
     if (!stripe || !elements) return;
 
     // Fetch Payment Intent from the backend
-    const response = await axiosPublic.post("/api/create-payment-intent", {
+    const response = await axiosSecure.post("/api/create-payment-intent", {
       amount: price * 100,
     });
 
@@ -63,7 +63,7 @@ const CheckoutForm = ({
           userEmail,
           paymentId: result.paymentIntent.id,
         };
-        const saveResult = await axiosPublic.post("/api/save-payment-info", paymentInfo);
+        const saveResult = await axiosSecure.post("/api/save-payment-info", paymentInfo);
 
         if(saveResult.status===200){
           setLoading(false)

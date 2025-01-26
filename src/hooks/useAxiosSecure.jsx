@@ -10,23 +10,43 @@ const axiosSecure = axios.create({
 
 const useAxiosSecure = () => {
   const navigate = useNavigate();
-  const { logOut } = useAuth();
+  const { logOut, setLoading } = useAuth();
 
   useEffect(() => {
-    axiosSecure.interceptors.response.use(
+    // Request Intercepts
+    axiosSecure.interceptors.request.use(
       (res) => {
+        const token = localStorage.getItem("access-token");
+        res.headers.authorization = `Bearer ${token}`;
         return res;
       },
       async (error) => {
-        console.log("Error caught from axios interceptor --->", error.response);
+        // console.log("Error caught from axios interceptor --->", error.response);
         if (error.response.status === 401 || error.response.status === 403) {
-          logOut();
+          await logOut();
+          setLoading(false);
           navigate("/login");
         }
         return Promise.reject(error);
       },
     );
-  }, [logOut, navigate]);
+
+    // Response Intercepts
+    axiosSecure.interceptors.response.use(
+      (res) => {
+        return res;
+      },
+      async (error) => {
+        const status = error.response.status;
+        if (status === 401 || status === 403) {
+          await logOut();
+          setLoading(false);
+          navigate("/login");
+        }
+        return Promise.reject(error);
+      },
+    );
+  }, [logOut, navigate, setLoading]);
   return axiosSecure;
 };
 

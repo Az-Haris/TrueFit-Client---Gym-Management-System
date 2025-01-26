@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 
+
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
@@ -84,6 +85,13 @@ const AuthProvider = ({ children }) => {
       setLoading(true);
 
       if (currentUser) {
+        const userInfo = {email: currentUser.email}
+        await axiosPublic.post('/jwt', userInfo)
+        .then(res=>{
+          if(res.data.token){
+            localStorage.setItem('access-token', res.data.token)
+          }
+        })
         try {
           // Fetch user data from backend using their email
           const response = await axiosPublic.get(`/users/${currentUser.email}`);
@@ -95,13 +103,13 @@ const AuthProvider = ({ children }) => {
               ...response.data, // Merge backend data
             });
           } else {
-            console.error("Failed to fetch user data:");
             setUser(currentUser); // Fallback to Firebase user if backend fetch fails
           }
-        } catch (error) {
-          console.error("Error fetching user data:", error.message);
+        } catch {
           setUser(currentUser); // Fallback to Firebase user in case of an error
         }
+      } else{
+        localStorage.removeItem('access-token')
       }
 
       setLoading(false);

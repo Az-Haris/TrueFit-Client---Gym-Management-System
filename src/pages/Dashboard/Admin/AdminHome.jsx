@@ -40,11 +40,11 @@ const AdminHome = () => {
 
   // Data for Bar and Pie Charts
   const chartData = [
-    { name: "Newsletter Subscribers", value: stats?.totalSubscribers },
     { name: "Paid Members", value: stats?.totalPaidMembers },
+    { name: "Newsletter Subscribers", value: stats?.totalSubscribers },
   ];
 
-  const COLORS = ["#4CAF50", "#2196F3"];
+  const COLORS = ["#2196F3", "#4CAF50"];
 
   return (
     <div>
@@ -108,7 +108,17 @@ const AdminHome = () => {
                 <XAxis dataKey="name" />
                 <YAxis />
                 <Tooltip />
-                <Bar dataKey="value" fill="#4CAF50" />
+                <Bar
+                  dataKey="value"
+                  fill={(entry, index) => COLORS[index % COLORS.length]}
+                >
+                  {chartData.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                    />
+                  ))}
+                </Bar>
               </BarChart>
             </ResponsiveContainer>
           </div>
