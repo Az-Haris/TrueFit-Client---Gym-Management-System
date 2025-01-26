@@ -10,35 +10,52 @@ import {
   Cell,
   Legend,
 } from "recharts";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Loading from "../../../components/Loading";
+import { Helmet } from "react-helmet-async";
 
 const AdminHome = () => {
-  // Sample Data
-  const totalBalance = 15200; // Example total balance
-  const transactions = [
-    { id: 1, member: "John Doe", amount: 500, date: "2025-01-10" },
-    { id: 2, member: "Jane Smith", amount: 750, date: "2025-01-09" },
-    { id: 3, member: "Emily Brown", amount: 400, date: "2025-01-08" },
-    { id: 4, member: "Michael Scott", amount: 300, date: "2025-01-07" },
-    { id: 5, member: "Dwight Schrute", amount: 600, date: "2025-01-06" },
-    { id: 6, member: "Pam Beesly", amount: 450, date: "2025-01-05" },
-  ];
+  const axiosSecure = useAxiosSecure();
+  const { data = {}, isLoading } = useQuery({
+    queryKey: ["transactions"],
+    queryFn: async () => {
+      const result = await axiosSecure.get("/financial-overview");
+      return result.data;
+    },
+  });
 
-  const totalNewsletterSubscribers = 300;
-  const totalPaidMembers = 120;
+  const { data: stats = {}, isLoading: statsLoading } = useQuery({
+    queryKey: ["stats"],
+    queryFn: async () => {
+      const result = await axiosSecure.get("/subscribers-vs-members");
+      return result.data;
+    },
+  });
+
+  if (isLoading || statsLoading) return <Loading></Loading>;
+
+  const transactions = data?.latestTransactions;
+  const totalBalance = data?.totalBalance;
 
   // Data for Bar and Pie Charts
   const chartData = [
-    { name: "Newsletter Subscribers", value: totalNewsletterSubscribers },
-    { name: "Paid Members", value: totalPaidMembers },
+    { name: "Newsletter Subscribers", value: stats?.totalSubscribers },
+    { name: "Paid Members", value: stats?.totalPaidMembers },
   ];
 
   const COLORS = ["#4CAF50", "#2196F3"];
 
   return (
     <div>
+      <Helmet>
+        <title>TrueFit - Hey Admin, Your Dashboard Here!.</title>
+      </Helmet>
       {/* Total Balance Section */}
       <div>
-        <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">Total Balance</h2>
+        <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">
+          Total Balance
+        </h2>
         <p className="text-4xl font-semibold text-green-600">${totalBalance}</p>
       </div>
       <hr className="my-8" />
@@ -60,13 +77,15 @@ const AdminHome = () => {
             </thead>
             <tbody>
               {transactions.map((transaction, index) => (
-                <tr key={transaction.id}>
+                <tr key={transaction._id}>
                   <td className="px-4 py-2 border-b">{index + 1}</td>
-                  <td className="px-4 py-2 border-b">{transaction.member}</td>
+                  <td className="px-4 py-2 border-b">{transaction.userName}</td>
                   <td className="px-4 py-2 border-b text-green-600">
-                    ${transaction.amount}
+                    ${transaction.price}
                   </td>
-                  <td className="px-4 py-2 border-b">{transaction.date}</td>
+                  <td className="px-4 py-2 border-b">
+                    {transaction.date.split("T")[0]}
+                  </td>
                 </tr>
               ))}
             </tbody>

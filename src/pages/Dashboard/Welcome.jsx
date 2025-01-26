@@ -1,12 +1,16 @@
 import { Button } from "flowbite-react";
 import { Link } from "react-router";
 import useAuth from "../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const Welcome = () => {
   const { user } = useAuth();
 
   return (
     <div className="flex flex-col items-center justify-center h-[calc(100vh-90px)] md:h-[calc(100vh-100px)] bg-gradient-to-br from-blue-500 to-purple-600 text-white py-5 px-2">
+      <Helmet>
+        <title>TrueFit - Welcome to your dashboard.</title>
+      </Helmet>
       {/* Welcome Message */}
       <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-4 text-center">
         Welcome to TrueFit!

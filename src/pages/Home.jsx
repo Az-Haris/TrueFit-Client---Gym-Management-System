@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import About from "../components/Home/About";
 import Banner from "../components/Home/Banner";
 import CommunityPosts from "../components/Home/CommunityPosts";
@@ -13,6 +14,9 @@ const Home = () => {
   return (
     <div className="container mx-auto">
       <ScrollToTop></ScrollToTop>
+      <Helmet>
+        <title>TrueFit - Achieve Your Peak Potential!</title>
+      </Helmet>
       <Banner></Banner>
       <SectionGap></SectionGap>
       <Feature></Feature>

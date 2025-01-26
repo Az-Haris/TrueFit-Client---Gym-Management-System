@@ -6,6 +6,7 @@ import Loading from "../../../components/Loading";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import { Spinner } from "flowbite-react";
+import { Helmet } from "react-helmet-async";
 
 const AppliedTrainerDetails = () => {
   const { email } = useParams();
@@ -26,7 +27,7 @@ const AppliedTrainerDetails = () => {
     setConfirmLoading(true);
     // Handle confirm logic here
     const response = await axiosSecure.patch(`/confirm/${email}`);
-    
+
     if (response.status === 200) {
       Swal.fire("Success!", "Confirmed Trainer Successfully!", "success");
       setConfirmLoading(false);
@@ -69,6 +70,9 @@ const AppliedTrainerDetails = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>TrueFit - Applied Trainer Details.</title>
+      </Helmet>
       <div className="flex items-center gap-3 mb-6">
         <Link to={"/dashboard/applied-trainers"}>
           <FaRegArrowAltCircleLeft className="text-2xl text-black" />

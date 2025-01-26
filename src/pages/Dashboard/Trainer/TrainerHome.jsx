@@ -2,34 +2,33 @@ import { Link } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 const TrainerHome = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const trainerId = user?._id;
-  const { data: slots = [],  } = useQuery({
+  const { data: slots = [] } = useQuery({
     queryKey: ["slots"],
     queryFn: async () => {
       const result = await axiosSecure.get(`/slots/${trainerId}`);
       return result.data;
     },
   });
- 
-  const { data: forums = [],  } = useQuery({
+
+  const { data: forums = [] } = useQuery({
     queryKey: ["forums"],
     queryFn: async () => {
-      const result = await axiosSecure.get('/trainer-forum');
+      const result = await axiosSecure.get("/trainer-forum");
       return result.data;
     },
   });
- 
-  
+
   const stats = {
     totalSlots: slots.length,
     AvailableSlots: user?.slots,
     pendingApplications: forums?.length,
   };
-
 
   const upcomingBookings = [
     {
@@ -50,6 +49,9 @@ const TrainerHome = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>TrueFit - Hey Trainer! Your dashboard at a glance.</title>
+      </Helmet>
       {/* Welcome Section */}
       <div className="bg-white shadow-md rounded-lg p-3 sm:p-6 mb-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -76,15 +78,15 @@ const TrainerHome = () => {
           <p className="text-2xl font-bold text-blue-500">{stats.totalSlots}</p>
         </div>
         <div className="bg-white shadow-md rounded-lg p-3 sm:p-6">
-          <h2 className="text-lg font-semibold text-gray-800">Available Slots</h2>
+          <h2 className="text-lg font-semibold text-gray-800">
+            Available Slots
+          </h2>
           <p className="text-2xl font-bold text-red-500">
             {stats.AvailableSlots}
           </p>
         </div>
         <div className="bg-white shadow-md rounded-lg p-3 sm:p-6">
-          <h2 className="text-lg font-semibold text-gray-800">
-            Forum Posts
-          </h2>
+          <h2 className="text-lg font-semibold text-gray-800">Forum Posts</h2>
           <p className="text-2xl font-bold text-green-500">
             {stats.pendingApplications}
           </p>
@@ -127,7 +129,10 @@ const TrainerHome = () => {
           View, add, or update your available slots to keep your schedule
           organized.
         </p>
-        <Link to={'/dashboard/manage-slots'} className="bg-blue-500 text-white py-2 px-4 rounded-lg shadow hover:bg-blue-600">
+        <Link
+          to={"/dashboard/manage-slots"}
+          className="bg-blue-500 text-white py-2 px-4 rounded-lg shadow hover:bg-blue-600"
+        >
           Manage Slots
         </Link>
       </div>

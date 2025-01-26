@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 const Trainers = () => {
   const axiosSecure = useAxiosSecure();
@@ -39,6 +40,9 @@ const Trainers = () => {
 
   return (
     <>
+      <Helmet>
+        <title>TrueFit - All Trainers Here.</title>
+      </Helmet>
       <p className="text-2xl font-bold text-gray-800 mb-4">All Trainers</p>
 
       <div className="flex flex-col gap-2">

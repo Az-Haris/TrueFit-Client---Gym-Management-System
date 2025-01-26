@@ -4,7 +4,10 @@ import Logo from "./Logo";
 
 const FooterSection = () => {
   return (
-    <Footer container className="container mx-auto shadow-none rounded-none px-3">
+    <Footer
+      container
+      className="container mx-auto shadow-none rounded-none px-3"
+    >
       <div className="w-full text-center mt-16">
         <Footer.Divider className="max-w-40" />
         <div className="w-full flex flex-col gap-7 md:flex-row lg:items-center justify-between">
@@ -17,7 +20,9 @@ const FooterSection = () => {
             </div>
           </div>
           <div>
-            <p className="text-left mb-3 text-lg font-semibold text-gray-500">Useful Links</p>
+            <p className="text-left mb-3 text-lg font-semibold text-gray-500">
+              Useful Links
+            </p>
             <ul className="text-gray-500 flex gap-x-7 gap-y-2 flex-wrap">
               <li>
                 <Link className="hover:text-gray-800" to={"/about"}>
@@ -43,7 +48,8 @@ const FooterSection = () => {
           target="_blank"
           className="text-sm text-gray-500 text-center"
         >
-          © {2025} <span className="hover:text-blue-700">Az Industries BD</span>
+          © {new Date().getFullYear()}{" "}
+          <span className="hover:text-blue-700">Az Industries BD</span>
         </Link>
       </div>
     </Footer>

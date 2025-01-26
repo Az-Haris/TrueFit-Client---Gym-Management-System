@@ -67,11 +67,13 @@ const Navbar = () => {
                 </div>
 
                 <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4 z-10">
-                  <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 border rounded-md">
-                    <p className="cursor-pointer hover:text-black">
+                  <div className="flex flex-col gap-2 w-52 py-3 px-5 bg-slate-100 text-gray-500 border rounded-md">
+                    <p className="text-xl">Welcome, </p>
+                    <p>{user?.displayName}</p>
+                    <p className="">
                       ---
                     </p>
-                    <p className="cursor-pointer hover:text-black">---</p>
+                    <Link to={'/dashboard'} className="cursor-pointer hover:text-black">Dashboard</Link>
                     <p
                       onClick={() => {
                         logOut()

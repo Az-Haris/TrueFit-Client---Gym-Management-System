@@ -6,6 +6,7 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { Spinner } from "flowbite-react";
+import { Helmet } from "react-helmet-async";
 
 const AddSlot = () => {
   const axiosPublic = useAxiosPublic();
@@ -57,7 +58,7 @@ const AddSlot = () => {
 
     // Add logic to save the data to the database
     const result = await axiosSecure.post("/add-slot", slotDataWithTrainerId);
- 
+
     if (result.data.modifiedCount > 0 || result.data.matchedCount > 0) {
       Swal.fire("Success!", "Successfully Added Slot!", "success");
       setLoading(false);
@@ -75,6 +76,9 @@ const AddSlot = () => {
 
   return (
     <div className="w-full max-w-2xl">
+      <Helmet>
+        <title>TrueFit - Add New Slots.</title>
+      </Helmet>
       <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-6">
         Add New Slot
       </h2>

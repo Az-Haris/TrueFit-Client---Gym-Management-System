@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
@@ -14,10 +15,12 @@ const Subscribers = () => {
 
   return (
     <>
+      <Helmet>
+        <title>TrueFit - All Subscribers Here.</title>
+      </Helmet>
       <p className="text-2xl font-bold text-gray-800 mb-4">
         All Newsletter Subscribers
       </p>
-
       <div className="flex flex-col gap-2">
         {/* List Table Title */}
 

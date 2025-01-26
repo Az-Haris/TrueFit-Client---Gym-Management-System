@@ -6,6 +6,8 @@ import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
+import ScrollToTop from "../components/ScrollToTop";
 
 const Login = () => {
   const axiosPublic = useAxiosPublic();
@@ -49,6 +51,10 @@ const Login = () => {
       onSubmit={handleSubmit}
       className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800"
     >
+      <ScrollToTop></ScrollToTop>
+      <Helmet>
+        <title>TrueFit - Login to your account.</title>
+      </Helmet>
       <div className="inline-flex items-center gap-2 mb-2 mt-10">
         <p className="text-3xl font-prata">Login</p>
         <hr className="border-none h-[1.5px] w-8 bg-gray-800" />

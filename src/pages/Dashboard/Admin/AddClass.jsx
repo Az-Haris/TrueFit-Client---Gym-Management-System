@@ -3,10 +3,10 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Spinner } from "flowbite-react";
 import Swal from "sweetalert2";
 import { imageUpload } from "../../../utils/imageUpload";
+import { Helmet } from "react-helmet-async";
 const AddClass = () => {
   const axiosSecure = useAxiosSecure();
   const [loading, setLoading] = useState(false);
-
 
   const handleSubmit = async (e) => {
     setLoading(true);
@@ -17,30 +17,32 @@ const AddClass = () => {
     const photo = e.target.photo.files[0];
 
     // upload photo
-    const photoURL = await imageUpload(photo)
+    const photoURL = await imageUpload(photo);
 
     const classData = {
       className,
       details,
       photoURL,
       bookings: 0,
-    }
+    };
 
     // Add logic here to save data to the database
     const result = await axiosSecure.post("/classes", classData);
     if (result.status === 200) {
       setLoading(false);
       Swal.fire("Success!", "Successfully Added Class!", "success");
-      
-      e.target.className.value = ""
-      e.target.details.value = ""
-      e.target.photo.value = null
 
+      e.target.className.value = "";
+      e.target.details.value = "";
+      e.target.photo.value = null;
     }
   };
 
   return (
     <div>
+      <Helmet>
+        <title>TrueFit - Add Classes.</title>
+      </Helmet>
       <div className="w-full max-w-xl">
         <h2 className="text-2xl font-bold text-gray-800 mb-6">Add New Class</h2>
         <form onSubmit={handleSubmit} className="space-y-4">

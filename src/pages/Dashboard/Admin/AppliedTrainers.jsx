@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Loading from "../../../components/Loading";
+import { Helmet } from "react-helmet-async";
 
 const AppliedTrainers = () => {
   const axiosSecure = useAxiosSecure();
@@ -13,7 +14,6 @@ const AppliedTrainers = () => {
     },
   });
 
-
   const navigate = useNavigate();
 
   const handleDetails = (trainer) => {
@@ -22,6 +22,9 @@ const AppliedTrainers = () => {
 
   return (
     <div className="">
+      <Helmet>
+        <title>TrueFit - Applied Trainers.</title>
+      </Helmet>
       <h1 className="text-2xl font-bold text-gray-800 mb-6">
         Applied Trainers
       </h1>
@@ -29,40 +32,47 @@ const AppliedTrainers = () => {
       {isLoading ? (
         <Loading></Loading>
       ) : (
-        <>{trainer.length > 0 ? <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {trainer.map((trainer) => (
-            <div
-              key={trainer._id}
-              className="bg-white border rounded-lg shadow p-4 flex flex-col justify-between"
-            >
-              <div>
-                <h2 className="text-lg font-bold text-gray-700 mb-2">
-                  {trainer.name}
-                </h2>
-                <p className="text-gray-600 text-sm">
-                  <strong>Name:</strong> {trainer.fullName}
-                </p>
-                <p className="text-gray-600 text-sm">
-                  <strong>Age:</strong> {trainer.age}
-                </p>
-                <p className="text-gray-600 text-sm">
-                  <strong>Skills:</strong> {trainer.skills.map(skill=>skill.label).join(", ")}
-                </p>
-                <p className="text-gray-600 text-sm">
-                  <strong>Experience:</strong> {trainer.experience} years
-                </p>
-              </div>
-              <div className="mt-4">
-                <button
-                  onClick={() => handleDetails(trainer)}
-                  className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded"
+        <>
+          {trainer.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {trainer.map((trainer) => (
+                <div
+                  key={trainer._id}
+                  className="bg-white border rounded-lg shadow p-4 flex flex-col justify-between"
                 >
-                  View Details
-                </button>
-              </div>
+                  <div>
+                    <h2 className="text-lg font-bold text-gray-700 mb-2">
+                      {trainer.name}
+                    </h2>
+                    <p className="text-gray-600 text-sm">
+                      <strong>Name:</strong> {trainer.fullName}
+                    </p>
+                    <p className="text-gray-600 text-sm">
+                      <strong>Age:</strong> {trainer.age}
+                    </p>
+                    <p className="text-gray-600 text-sm">
+                      <strong>Skills:</strong>{" "}
+                      {trainer.skills.map((skill) => skill.label).join(", ")}
+                    </p>
+                    <p className="text-gray-600 text-sm">
+                      <strong>Experience:</strong> {trainer.experience} years
+                    </p>
+                  </div>
+                  <div className="mt-4">
+                    <button
+                      onClick={() => handleDetails(trainer)}
+                      className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded"
+                    >
+                      View Details
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div> : <p className="text-red-500">Don&apos;t have any application.</p>}</>
+          ) : (
+            <p className="text-red-500">Don&apos;t have any application.</p>
+          )}
+        </>
       )}
     </div>
   );

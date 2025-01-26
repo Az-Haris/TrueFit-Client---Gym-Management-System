@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import ScrollToTop from "../components/ScrollToTop";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const TrainerBooked = () => {
   const navigate = useNavigate();
@@ -83,6 +84,9 @@ const TrainerBooked = () => {
   return (
     <div className="container mx-auto px-3">
       <ScrollToTop></ScrollToTop>
+      <Helmet>
+        <title>TrueFit - Book The Trainer.</title>
+      </Helmet>
       {/* Trainer and Slot Info */}
       <div className="bg-white shadow-lg rounded-lg p-5 mb-8">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">

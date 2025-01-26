@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import ScrollToTop from "../components/ScrollToTop";
 import Loading from "../components/Loading";
+import { Helmet } from "react-helmet-async";
 
 const TrainerDetails = () => {
   const { id } = useParams();
@@ -29,13 +30,15 @@ const TrainerDetails = () => {
   return (
     <div className="container mx-auto px-3 py-6">
       <ScrollToTop></ScrollToTop>
-
+      <Helmet>
+        <title>TrueFit - Explore Comprehensive Details of The Trainer.</title>
+      </Helmet>
       {isLoading ? (
         <Loading></Loading>
       ) : (
         <>
           {/* Trainer Info Section */}
-          <div className="flex flex-col lg:flex-row items-center bg-white shadow-lg rounded-lg p-6 mb-8">
+          <div className="flex flex-col lg:flex-row items-center bg-white shadow-lg rounded-lg p-5 mb-8">
             <img
               src={trainerData?.photoURL}
               alt={trainerData?.fullName || trainerData.displayName}

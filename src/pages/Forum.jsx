@@ -4,13 +4,19 @@ import Title from "../components/Title";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import Loading from "../components/Loading";
 import ScrollToTop from "../components/ScrollToTop";
+import { Helmet } from "react-helmet-async";
 
 const Forum = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const axiosPublic = useAxiosPublic();
 
   // Fetch posts
-  const { data = {}, isLoading, isError, refetch } = useQuery({
+  const {
+    data = {},
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery({
     queryKey: ["forumPosts", currentPage],
     queryFn: async () => {
       const result = await axiosPublic.get(`/forum?page=${currentPage}`);
@@ -67,6 +73,12 @@ const Forum = () => {
   return (
     <>
       <ScrollToTop></ScrollToTop>
+      <Helmet>
+        <title>
+          TrueFit - Explore Community Insights. Stay informed with the latest
+          posts and valuable discussions.
+        </title>
+      </Helmet>
       <div className="container mx-auto p-4 mt-5">
         <Title
           title="Explore Community Insights"

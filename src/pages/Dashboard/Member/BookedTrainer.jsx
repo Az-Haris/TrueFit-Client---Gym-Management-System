@@ -4,6 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const BookedTrainer = () => {
   const { user } = useAuth();
@@ -54,6 +55,9 @@ const BookedTrainer = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>TrueFit - Your Booked Trainer.</title>
+      </Helmet>
       <div className="max-w-4xl">
         <h1 className="text-2xl font-bold text-gray-800 mb-4">
           Booked Trainer

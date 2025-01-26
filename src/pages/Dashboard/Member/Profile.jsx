@@ -4,6 +4,7 @@ import { imageUpload } from "../../../utils/imageUpload";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useNavigate } from "react-router";
+import { Helmet } from "react-helmet-async";
 
 const Profile = () => {
   const { user, updateUser, setUser, logOut } = useAuth();
@@ -11,9 +12,7 @@ const Profile = () => {
   const [name, setName] = useState(user.displayName);
   const [selectedFile, setSelectedFile] = useState(null);
   const axiosPublic = useAxiosPublic();
-  const navigate = useNavigate()
-
-
+  const navigate = useNavigate();
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -32,10 +31,14 @@ const Profile = () => {
     updateUser({ displayName: name, photoURL }).then(async () => {
       await axiosPublic
         .patch(`/user/${user.email}`, { displayName: name, photoURL })
-        .then(async(user) => {
+        .then(async (user) => {
           setUser(user.data);
-          navigate('/dashboard/member-home')
-          await Swal.fire("Success!", `Profile Updated Successfully! Please Login again to see changes.`, "success");
+          navigate("/dashboard/member-home");
+          await Swal.fire(
+            "Success!",
+            `Profile Updated Successfully! Please Login again to see changes.`,
+            "success",
+          );
           logOut();
         });
     });
@@ -43,6 +46,9 @@ const Profile = () => {
 
   return (
     <div className="">
+      <Helmet>
+        <title>TrueFit - View & Update Your Profile.</title>
+      </Helmet>
       <form
         onSubmit={handleUpdateProfile}
         className="max-w-lg mx-auto bg-white shadow-md rounded-lg p-6"

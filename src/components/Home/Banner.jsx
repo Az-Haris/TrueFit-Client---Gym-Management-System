@@ -32,7 +32,7 @@ const Banner = () => {
 
   
   return (
-    <div className="h-80 sm:h-80 lg:h-[480px]">
+    <div className="h-80 sm:h-80 lg:h-[550px]">
       <Carousel className="z-[1]" slideInterval={3000}>
         {bannerSlider.map((slider, idx) => (
           <div

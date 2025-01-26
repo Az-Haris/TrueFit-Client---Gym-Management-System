@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const MemberHome = () => {
   const { user } = useAuth();
@@ -32,6 +33,9 @@ const MemberHome = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>TrueFit - Hey Member, Your Dashboard is Here.</title>
+      </Helmet>
       <div className="max-w-5xl mx-auto">
         {/* Profile Section */}
         <div className="bg-white shadow-md rounded-lg p-3 sm:p-6 mb-6">

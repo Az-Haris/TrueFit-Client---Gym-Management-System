@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import { useNavigate } from "react-router";
 import PrivateRoute from "../routes/PrivateRoute";
+import { Helmet } from "react-helmet-async";
 
 const skillOptions = [
   { value: "fitness", label: "Fitness" },
@@ -141,6 +142,12 @@ const BeATrainer = () => {
   return (
     <div className="mt-5 md:mt-10">
       <ScrollToTop></ScrollToTop>
+      <Helmet>
+        <title>
+          TrueFit - Become a Trainer. Apply to share your expertise and inspire
+          future fitness enthusiasts.
+        </title>
+      </Helmet>
       <Title
         title={"Become a Trainer"}
         description={

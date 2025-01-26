@@ -3,12 +3,17 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import Loading from "../../../components/Loading";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ManageSlots = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const trainerId = user?._id;
-  const { data: slots = [], isLoading, refetch } = useQuery({
+  const {
+    data: slots = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["slots"],
     queryFn: async () => {
       const result = await axiosSecure.get(`/slots/${trainerId}`);
@@ -19,30 +24,33 @@ const ManageSlots = () => {
 
   const handleDeleteSlot = (slotId) => {
     Swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!",
-        }).then(async (result) => {
-          if (result.isConfirmed) {
-            const result = await axiosSecure.delete(`/slots/${slotId}`);
-            if (result.status === 200) {
-              refetch();
-              Swal.fire({
-                title: "Deleted!",
-                text: "Slot has been deleted.",
-                icon: "success",
-              });
-            }
-          }
-        });
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const result = await axiosSecure.delete(`/slots/${slotId}`);
+        if (result.status === 200) {
+          refetch();
+          Swal.fire({
+            title: "Deleted!",
+            text: "Slot has been deleted.",
+            icon: "success",
+          });
+        }
+      }
+    });
   };
 
   return (
     <div>
+      <Helmet>
+        <title>TrueFit - Manage Your Slots.</title>
+      </Helmet>
       <h2 className="text-2xl font-bold text-gray-800 mb-6">Manage Slots</h2>
 
       {isLoading ? (

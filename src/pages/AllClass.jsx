@@ -5,6 +5,7 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../components/Loading";
 import ScrollToTop from "../components/ScrollToTop";
+import { Helmet } from "react-helmet-async";
 
 const AllClass = () => {
   const axiosPublic = useAxiosPublic();
@@ -33,9 +34,14 @@ const AllClass = () => {
     },
   });
 
-
   return (
     <>
+      <Helmet>
+        <title>
+          TrueFit - Explore All Classes! Discover diverse classes and expert
+          trainers to elevate your skills!
+        </title>
+      </Helmet>
       <ScrollToTop></ScrollToTop>
       <div className="container mx-auto mt-5">
         <Title
@@ -78,25 +84,31 @@ const AllClass = () => {
                 </div>
 
                 <div className="flex justify-between items-center mt-3">
-                <span className="text-gray-500"><span className="text-2xl">{clas.bookings}</span> Bookings</span>
+                  <span className="text-gray-500">
+                    <span className="text-2xl">{clas.bookings}</span> Bookings
+                  </span>
                   <div className="flex -space-x-2">
-                  {clas.trainerId.slice(0, 5).map((trainer, idx) => (
-                    <Link
-                      to={`/trainers/${trainer}`}
-                      key={idx}
-                      className="relative block w-12 h-12 rounded-full border border-blue-400 hover:ring-2 hover:ring-blue-500 overflow-hidden hover:z-10 transition duration-200"
-                    >
-                      <img
-                        src={
-                          trainers.find(trainerInfo => trainerInfo._id === trainer)?.photoURL
-                        }
-                        alt={
-                          trainers.find(trainerInfo => trainerInfo._id === trainer)?.fullName
-                        }
-                        className="object-cover w-full h-full bg-white"
-                      />
-                    </Link>
-                  ))}
+                    {clas.trainerId.slice(0, 5).map((trainer, idx) => (
+                      <Link
+                        to={`/trainers/${trainer}`}
+                        key={idx}
+                        className="relative block w-12 h-12 rounded-full border border-blue-400 hover:ring-2 hover:ring-blue-500 overflow-hidden hover:z-10 transition duration-200"
+                      >
+                        <img
+                          src={
+                            trainers.find(
+                              (trainerInfo) => trainerInfo._id === trainer,
+                            )?.photoURL
+                          }
+                          alt={
+                            trainers.find(
+                              (trainerInfo) => trainerInfo._id === trainer,
+                            )?.fullName
+                          }
+                          className="object-cover w-full h-full bg-white"
+                        />
+                      </Link>
+                    ))}
                   </div>
                 </div>
               </div>

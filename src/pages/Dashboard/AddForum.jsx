@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AddForum = () => {
   const { user } = useAuth();
@@ -42,6 +43,9 @@ const AddForum = () => {
 
   return (
     <div className="max-w-3xl">
+      <Helmet>
+        <title>TrueFit - Add Forum Posts.</title>
+      </Helmet>
       <h1 className="text-2xl font-bold text-gray-800 mb-4">Add New Forum</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Title */}

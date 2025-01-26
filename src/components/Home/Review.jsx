@@ -50,7 +50,7 @@ const Review = () => {
               <p className="text-gray-700 mb-4 italic">
                 &quot;{review.review}&quot;
               </p>
-              <div className="text-yellow-400">
+              <div className="text-yellow-400 text-3xl">
                 {"★".repeat(Math.floor(review.rating))}{" "}
                 {review.rating % 1 > 0 && "½"}
               </div>

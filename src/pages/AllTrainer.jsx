@@ -4,6 +4,7 @@ import Title from "../components/Title";
 import TrainerCard from "../components/Trainer/TrainerCard";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import Loading from "../components/Loading";
+import { Helmet } from "react-helmet-async";
 
 const AllTrainer = () => {
   const axiosPublic = useAxiosPublic();
@@ -17,6 +18,12 @@ const AllTrainer = () => {
 
   return (
     <>
+      <Helmet>
+        <title>
+          TrueFit - Meet Our Trainers. Experienced trainers dedicated to helping
+          you achieve fitness goals.
+        </title>
+      </Helmet>
       <ScrollToTop></ScrollToTop>
       <div className="mt-5 container mx-auto">
         <Title
