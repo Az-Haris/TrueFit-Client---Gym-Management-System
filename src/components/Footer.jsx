@@ -1,6 +1,7 @@
 import { Footer } from "flowbite-react";
 import { Link } from "react-router";
 import Logo from "./Logo";
+import { assets } from "../assets/assets";
 
 const FooterSection = () => {
   return (
@@ -40,6 +41,43 @@ const FooterSection = () => {
                 </Link>
               </li>
             </ul>
+            <div className="flex gap-2 mt-3">
+              <a target="_blank" href="https://www.facebook.com/alimuzzaman.haris">
+                <img
+                  className="w-9 transform hover:scale-110 transition duration-300"
+                  src={assets.Facebook}
+                  alt="Facebook"
+                />
+              </a>
+              <a target="_blank" href="https://www.linkedin.com/in/alimuzzaman-haris/">
+                <img
+                  className="w-9 transform hover:scale-110 transition duration-300"
+                  src={assets.LinkedIn}
+                  alt="LinkedIn"
+                />
+              </a>
+              <a target="_blank" href="https://www.instagram.com/alimuzzaman.haris/">
+                <img
+                  className="w-9 transform hover:scale-110 transition duration-300"
+                  src={assets.Instagram}
+                  alt="Instagram"
+                />
+              </a>
+              <a target="_blank" href="https://www.youtube.com/@az-industries">
+                <img
+                  className="w-9 transform hover:scale-110 transition duration-300"
+                  src={assets.YouTube}
+                  alt="YouTube"
+                />
+              </a>
+              <a target="_blank" href="https://wa.me/+8801405742311">
+                <img
+                  className="w-9 transform hover:scale-110 transition duration-300"
+                  src={assets.Whatsapp}
+                  alt="Whatsapp"
+                />
+              </a>
+            </div>
           </div>
         </div>
         <Footer.Divider />

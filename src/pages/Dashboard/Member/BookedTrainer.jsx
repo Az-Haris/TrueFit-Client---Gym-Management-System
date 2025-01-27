@@ -5,78 +5,91 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import Loading from "../../../components/Loading";
 
 const BookedTrainer = () => {
   const { user } = useAuth();
   const userEmail = user?.email;
   const axiosSecure = useAxiosSecure();
-  const { data: userData = {} } = useQuery({
+
+  // Fetch user data
+  const { data: userData = {}, isLoading: userLoading } = useQuery({
     queryKey: ["member-info"],
     queryFn: async () => {
-      const result = await axiosSecure.get(`/users/${user?.email}`);
+      const result = await axiosSecure.get(`/users/${userEmail}`);
       return result.data;
     },
   });
-  const { data } = useQuery({
+
+  // Fetch booking info
+  const { data: bookingData, isLoading: bookingLoading } = useQuery({
     queryKey: ["bookingInfo"],
-    enabled: userData?.packageName == !undefined,
+    enabled: !!userData?.subscription, // Trigger only if subscription exists
     queryFn: async () => {
       const result = await axiosSecure.get(`/bookings/${userEmail}`);
       return result.data;
     },
   });
 
-  const trainerInfo = data?.trainerResult;
-  const slotInfo = data?.slotResult;
-  const classesInfo = data?.classResult;
+
+  const trainerInfo = bookingData?.trainerResult;
+  const slotInfo = bookingData?.slotResult;
+  const classesInfo = bookingData?.classResult;
 
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
 
+
+
   const handleReviewSubmit = async () => {
-    // Submit review logic here
-    const reviewData = {
-      reviewer: user?.displayName,
-      reviewerPhoto: user?.photoURL,
-      reviewerEmail: user?.email,
-      trainrId: trainerInfo?._id,
-      review,
-      rating,
-    };
-    setIsReviewModalOpen(false);
-    const result = await axiosSecure.post("/reviews", reviewData);
-    if (result.status === 200) {
-      Swal.fire("Success!", "Successfully Submitted Review!", "success");
-    } else {
-      Swal.fire("Error!", "Error Submitting Review!", "error");
+    try {
+      const reviewData = {
+        reviewer: user?.displayName,
+        reviewerPhoto: user?.photoURL,
+        reviewerEmail: user?.email,
+        trainerId: trainerInfo?._id,
+        review,
+        rating,
+      };
+      const result = await axiosSecure.post("/reviews", reviewData);
+      if (result.status === 200) {
+        Swal.fire("Success!", "Successfully Submitted Review!", "success");
+      } else {
+        Swal.fire("Error!", "Error Submitting Review!", "error");
+      }
+    } catch (error) {
+      Swal.fire("Error!", error?.message || "Error Submitting Review!", "error");
+    } finally {
+      setIsReviewModalOpen(false);
     }
   };
+  
+  
+  // Loading state
+  if (userLoading || bookingLoading) {
+    return <Loading />;
+  }
 
   return (
     <div>
       <Helmet>
-        <title>TrueFit - Your Booked Trainer.</title>
+        <title>TrueFit - Your Booked Trainer</title>
       </Helmet>
-      <div className="max-w-4xl">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">
-          Booked Trainer
-        </h1>
-
-        {data === undefined ? (
-          <p className="text-red-500">Haven&apos;t Booked Any Trainer.</p>
-        ) : (
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-2xl font-bold text-gray-800 mb-4">Booked Trainer</h1>
+        {bookingData ? (
           <>
             {/* Trainer Info */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
               <img
                 src={trainerInfo?.photoURL}
-                alt={trainerInfo?.fullName || trainerInfo?.displayName}
+                alt={trainerInfo?.fullName || "Trainer"}
                 className="w-20 h-20 rounded-full object-cover"
               />
               <div>
                 <h2 className="text-xl font-bold">
-                  {trainerInfo?.fullName || trainerInfo?.displayName}
+                  {trainerInfo?.fullName || "No Trainer Info"}
                 </h2>
                 <p className="text-gray-600">
                   {trainerInfo?.skills?.map((skill) => skill.label).join(", ")}
@@ -85,6 +98,7 @@ const BookedTrainer = () => {
                   <a
                     href={trainerInfo?.linkedin || "#"}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="hover:text-blue-500"
                   >
                     LinkedIn
@@ -92,6 +106,7 @@ const BookedTrainer = () => {
                   <a
                     href={trainerInfo?.instagram || "#"}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="hover:text-blue-500"
                   >
                     Instagram
@@ -115,10 +130,10 @@ const BookedTrainer = () => {
               <h3 className="text-lg font-bold text-gray-800">Slot Info</h3>
               <ul className="text-gray-700 list-disc list-inside">
                 <li>
-                  <strong>Slot Name :</strong> {slotInfo?.slotName}
+                  <strong>Slot Name:</strong> {slotInfo?.slotName}
                 </li>
                 <li>
-                  <strong>Slot Time :</strong> {slotInfo?.slotTime}
+                  <strong>Slot Time:</strong> {slotInfo?.slotTime}
                 </li>
               </ul>
             </div>
@@ -131,6 +146,8 @@ const BookedTrainer = () => {
               Leave a Review
             </button>
           </>
+        ) : (
+          <p className="text-red-500">You haven&apos;t booked any trainer yet.</p>
         )}
       </div>
 

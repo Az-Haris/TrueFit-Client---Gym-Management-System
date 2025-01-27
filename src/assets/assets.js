@@ -13,6 +13,11 @@ import GymImage from './gym-image.png'
 import Trainer from './Trainer.jpg'
 import Trainer1 from './trainer.webp'
 import Google from './google.png'
+import Facebook from './facebook.png'
+import LinkedIn from './linkedin.png'
+import Instagram from './instagram.png'
+import YouTube from './youtube.png'
+import Whatsapp from './whatsapp.png'
 
 
 export const assets = {
@@ -30,5 +35,10 @@ export const assets = {
     GymImage,
     Trainer,
     Trainer1,
-    Google
+    Google,
+    Facebook,
+    LinkedIn,
+    Instagram,
+    YouTube, 
+    Whatsapp,
 }

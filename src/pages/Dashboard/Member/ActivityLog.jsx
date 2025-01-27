@@ -68,7 +68,7 @@ const ActivityLog = () => {
                     {userData.status}
                   </td>
                   <td className="py-3 px-4 border-b border-gray-200">
-                    {userData.status === "Rejected" && (
+                    {userData.status === "rejected" && (
                       <button
                         onClick={() =>
                           handleViewFeedback(userData?.adminFeedback)

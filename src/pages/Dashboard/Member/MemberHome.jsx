@@ -3,27 +3,34 @@ import useAuth from "../../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
+import Loading from "../../../components/Loading";
 
 const MemberHome = () => {
   const { user } = useAuth();
   const userEmail = user?.email;
   const axiosSecure = useAxiosSecure();
-  const { data: userData = {} } = useQuery({
+
+  // Step 1: Fetch user data
+  const { data: userData = {}, isLoading: userLoading } = useQuery({
     queryKey: ["member-info"],
     queryFn: async () => {
-      const result = await axiosSecure.get(`/users/${user?.email}`);
+      const result = await axiosSecure.get(`/users/${userEmail}`);
       return result.data;
     },
   });
-  const { data } = useQuery({
+
+  // Step 2: Fetch booking data only after userData is available
+  const { data: bookingData = {}, isLoading: bookingLoading } = useQuery({
     queryKey: ["bookingInfo"],
-    enabled: userData?.subscription == !undefined,
     queryFn: async () => {
       const result = await axiosSecure.get(`/bookings/${userEmail}`);
       return result.data;
     },
+    enabled: !!userData?.subscription, // Trigger only if userData.subscription exists
   });
-  const slotsInfo = data?.slotResult;
+  
+
+  const slotsInfo = bookingData?.slotResult;
 
   const quickLinks = [
     { id: 1, title: "Community Forums", link: "/forum" },
@@ -58,7 +65,9 @@ const MemberHome = () => {
         {/* Upcoming Bookings */}
         <div className="bg-white shadow-md rounded-lg p-3 sm:p-6 mb-6">
           <h3 className="text-lg font-bold mb-4">Upcoming Bookings</h3>
-          {data === undefined ? (
+          {userLoading || bookingLoading ? (
+            <Loading></Loading>
+          ) : !slotsInfo ? (
             <div>
               <p className="text-red-500">Haven&apos;t Booked Any Trainer. </p>
               <Link
