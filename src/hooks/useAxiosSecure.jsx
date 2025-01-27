@@ -4,9 +4,11 @@ import useAuth from "./useAuth";
 import { useEffect } from "react";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: 'https://true-fit-server.vercel.app',
   withCredentials: false,
 });
+
+
 
 const useAxiosSecure = () => {
   const navigate = useNavigate();
