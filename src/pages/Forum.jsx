@@ -5,10 +5,12 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 import Loading from "../components/Loading";
 import ScrollToTop from "../components/ScrollToTop";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const Forum = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure()
 
   // Fetch posts
   const {
@@ -29,7 +31,7 @@ const Forum = () => {
   const { mutate: upvote } = useMutation({
     mutationFn: async (postId) => {
       // Make API request to upvote the post
-      const response = await axiosPublic.patch(`/forum/upvote/${postId}`);
+      const response = await axiosSecure.patch(`/forum/upvote/${postId}`);
       return response.data;
     },
     onSuccess: () => {
@@ -44,7 +46,7 @@ const Forum = () => {
   const { mutate: downvote } = useMutation({
     mutationFn: async (postId) => {
       // Make API request to downvote the post
-      const response = await axiosPublic.patch(`/forum/downvote/${postId}`);
+      const response = await axiosSecure.patch(`/forum/downvote/${postId}`);
       return response.data;
     },
     onSuccess: () => {
