@@ -2,16 +2,16 @@ import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import { imageUpload } from "../../../utils/imageUpload";
 import Swal from "sweetalert2";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useNavigate } from "react-router";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Profile = () => {
   const { user, updateUser, setUser, logOut } = useAuth();
   const [image, setImage] = useState(user.photoURL);
   const [name, setName] = useState(user.displayName);
   const [selectedFile, setSelectedFile] = useState(null);
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
   const handleImageChange = (e) => {
@@ -29,7 +29,7 @@ const Profile = () => {
     const photoURL = await imageUpload(selectedFile);
 
     updateUser({ displayName: name, photoURL }).then(async () => {
-      await axiosPublic
+      await axiosSecure
         .patch(`/user/${user.email}`, { displayName: name, photoURL })
         .then(async (user) => {
           setUser(user.data);

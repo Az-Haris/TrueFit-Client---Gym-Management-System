@@ -10,6 +10,7 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 import { useNavigate } from "react-router";
 import PrivateRoute from "../routes/PrivateRoute";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const skillOptions = [
   { value: "fitness", label: "Fitness" },
@@ -41,6 +42,7 @@ const dayOptions = [
 
 const BeATrainer = () => {
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure()
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [eligible, setEligible] = useState(true);
@@ -115,7 +117,7 @@ const BeATrainer = () => {
       };
 
       // Send to backend to store on db
-      const response = await axiosPublic.post("/apply", applicantData);
+      const response = await axiosSecure.post("/apply", applicantData);
       if (response.status === 200) {
         setLoading(false);
         Swal.fire("Success!", "Successfully Applied For Trainer!", "success");

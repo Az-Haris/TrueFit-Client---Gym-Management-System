@@ -19,7 +19,7 @@ const BookedTrainer = () => {
   });
   const { data } = useQuery({
     queryKey: ["bookingInfo"],
-    enabled: userData?.subscription == !undefined,
+    enabled: userData?.packageName == !undefined,
     queryFn: async () => {
       const result = await axiosSecure.get(`/bookings/${userEmail}`);
       return result.data;
