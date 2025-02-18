@@ -12,7 +12,7 @@ import SectionGap from "../components/SectionGap";
 
 const Home = () => {
   return (
-    <div className="container mx-auto">
+    <div>
       <ScrollToTop></ScrollToTop>
       <Helmet>
         <title>TrueFit - Achieve Your Peak Potential!</title>

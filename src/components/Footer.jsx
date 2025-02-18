@@ -7,9 +7,9 @@ const FooterSection = () => {
   return (
     <Footer
       container
-      className="container mx-auto shadow-none rounded-none px-3"
+      className="w-full shadow-none rounded-none px-3"
     >
-      <div className="w-full text-center mt-16">
+      <div className="container mx-auto text-center mt-16">
         <Footer.Divider className="max-w-40" />
         <div className="w-full flex flex-col gap-7 md:flex-row lg:items-center justify-between">
           <div>

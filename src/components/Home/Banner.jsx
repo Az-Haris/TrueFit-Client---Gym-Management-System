@@ -30,7 +30,6 @@ const Banner = () => {
     },
   ];
 
-  
   return (
     <div className="h-80 sm:h-80 lg:h-[550px]">
       <Carousel className="z-[1]" slideInterval={3000}>
@@ -41,14 +40,18 @@ const Banner = () => {
             className="relative bg-cover bg-center h-full"
           >
             {/* Overlay */}
-            <div className="absolute inset-0 bg-gray-800 bg-opacity-50"></div>
+            <div className="absolute inset-0 bg-gray-900 bg-opacity-60"></div>
 
             {/* Content */}
             <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-3">
-              <h2 className="text-4xl lg:text-5xl font-bold font-prata">{slider.title}</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold font-prata">
+                {slider.title}
+              </h2>
               <p className="text-lg my-4 px-9">{slider.description}</p>
               <Link to={slider.buttonLink}>
-                <Button outline gradientDuoTone="purpleToBlue">{slider.buttonText}</Button>
+                <Button outline gradientDuoTone="purpleToBlue">
+                  {slider.buttonText}
+                </Button>
               </Link>
             </div>
           </div>

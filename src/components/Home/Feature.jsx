@@ -40,7 +40,7 @@ const Feature = () => {
     },
   ];
   return (
-    <div>
+    <div className="container mx-auto">
       <Title
         title={"Key Features"}
         description={

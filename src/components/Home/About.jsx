@@ -18,8 +18,8 @@ const About = () => {
         description={"Empowering You to Achieve Your Best Self"}
       ></Title>
 
-      <div className="about-section bg-gray-100 py-16 px-4 sm:px-8 lg:px-16">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center">
+      <div className="about-section bg-gray-100 py-16">
+        <div className="container mx-auto px-3 flex flex-col lg:flex-row items-center">
           {/* Left Column */}
           <div className="lg:w-1/2 mb-8 lg:mb-0 hidden lg:block">
             <img

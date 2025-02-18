@@ -32,10 +32,10 @@ const Newsletter = () => {
   return (
     <section
       style={{ backgroundImage: `url(${assets.GymImage})` }}
-      className="relative bg-cover bg-center h-full py-20 md:py-32 px-3 sm:px-10 md:px-16 lg:px-20"
+      className="relative bg-cover bg-center py-24 md:py-44 lg:py-64 px-3 sm:px-10 md:px-16 lg:px-20"
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gray-800 bg-opacity-50"></div>
+      <div className="absolute inset-0 bg-gray-900 bg-opacity-60"></div>
       <div className="relative flex flex-col md:flex-row lg:gap-10 justify-between">
         {/* Left Side - Text */}
         <div className=" mb-8 lg:mb-0 md:w-1/2">
