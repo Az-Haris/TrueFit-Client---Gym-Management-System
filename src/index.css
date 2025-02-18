@@ -16,9 +16,11 @@ body{
 .navbar a.active hr{
   display: block;
   background-color: blue;
+  @apply dark:bg-blue-400
 }
 .navbar a.active{
   color: blue;
+  @apply dark:text-blue-400
 }
 
 .dashboard-link a.active{

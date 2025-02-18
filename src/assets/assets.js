@@ -1,4 +1,4 @@
-import logo from './Logo.png'
+import Logo from './favicon.png'
 import Slider1 from './Slider 1.jpg'
 import Slider2 from './Slider 2.jpg'
 import Slider3 from './Slider 3.jpg'
@@ -21,7 +21,7 @@ import Whatsapp from './whatsapp.png'
 
 
 export const assets = {
-    logo, 
+    Logo,
     Slider1,
     Slider2,
     Slider3,

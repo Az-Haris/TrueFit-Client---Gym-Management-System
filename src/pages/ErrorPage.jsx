@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet-async";
 const ErrorPage = () => {
   const navigate = useNavigate()
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-3">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-600 px-3">
       <ScrollToTop></ScrollToTop>
       <Helmet>
         <title>TrueFit - 404 - Not Found!</title>

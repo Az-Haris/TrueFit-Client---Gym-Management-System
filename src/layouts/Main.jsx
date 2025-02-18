@@ -7,6 +7,7 @@ const Main = () => {
     <>
       <nav>
         <Navbar></Navbar>
+        <div className="py-[27px] md:py-8"></div>
       </nav>
       <main>
         <Outlet></Outlet>

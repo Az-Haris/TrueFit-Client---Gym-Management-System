@@ -14,11 +14,11 @@ const Navbar = () => {
   const { user, logOut, setLoading, loading } = useAuth();
 
   return (
-    <div className="navbar py-1 font-medium  backdrop-blur-2xl shadow-xl fixed top-0 w-full z-10 bg-gray-100 bg-opacity-70">
+    <div className="navbar py-2 md:py-3 font-medium  shadow-xl fixed top-0 w-full z-10 bg-gray-200 dark:bg-gray-800">
       <div className="container mx-auto px-3 flex items-center justify-between">
         <Logo></Logo>
 
-        <ul className="hidden sm:flex gap-5 text-sm text-gray-700 uppercase">
+        <ul className="hidden sm:flex gap-5 text-sm text-gray-700 dark:text-gray-300 uppercase">
           <NavLink to={"/"} className="flex flex-col items-center gap-1">
             <p>Home</p>{" "}
             <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
@@ -129,11 +129,11 @@ const Navbar = () => {
 
         {/* Sidebar menu for small screen */}
         <div
-          className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all z-10 ${
+          className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white dark:bg-gray-800 transition-all z-10 min-h-screen ${
             visible ? "w-full" : "w-0"
           }`}
         >
-          <div className="text-gray-600 mt-5 px-3">
+          <div className="text-gray-600 dark:text-gray-300 mt-5 px-3">
             <div className="flex items-center justify-between border-b-2 pb-5 mb-10">
               <Logo></Logo>
               <button onClick={() => setVisible(false)}>

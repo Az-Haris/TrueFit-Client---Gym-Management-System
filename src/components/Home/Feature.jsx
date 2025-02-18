@@ -53,7 +53,7 @@ const Feature = () => {
           <Card key={idx} className="hover:shadow-2xl">
             <div className="relative flex items-center justify-between">
               <img src={feature.image} className="w-20" alt="Feature" />
-              <p className="absolute right-0 text-9xl font-bold text-gray-200">{idx+1}</p>
+              <p className="absolute right-0 text-9xl font-bold text-gray-200 dark:text-gray-700">{idx+1}</p>
             </div>
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               {feature.title}
