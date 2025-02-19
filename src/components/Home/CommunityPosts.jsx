@@ -88,7 +88,7 @@ const CommunityPosts = () => {
               <p className="text-sm text-gray-400 mt-1 mb-4">
                 Category : {post?.category}
               </p>
-              <p className="text-gray-600">{post?.description}</p>
+              <p className="text-gray-600 dark:text-gray-300">{post?.description}</p>
             </div>
             <div className="flex items-center justify-between mt-4">
               {/* Voting Buttons */}
@@ -120,7 +120,7 @@ const CommunityPosts = () => {
                   Downvote
                 </button>
               </div>
-              <span className="text-gray-500">
+              <span className="text-gray-500 dark:text-gray-400">
                 Votes: {post.upvotes - post.downvotes}
               </span>
             </div>

@@ -47,7 +47,7 @@ const Review = () => {
                 className="w-20 h-20 rounded-full mx-auto mb-4 border"
               />
               <h3 className="text-xl font-semibold mb-2">{review.reviewer}</h3>
-              <p className="text-gray-700 mb-4 italic">
+              <p className="text-gray-700 dark:text-gray-300 mb-4 italic">
                 &quot;{review.review}&quot;
               </p>
               <div className="text-yellow-400 text-3xl">

@@ -38,7 +38,7 @@ const FeaturedClasses = () => {
           {classesData?.map((clas) => (
             <div
               key={clas?._id}
-              className="border hover:shadow-2xl bg-white p-6 rounded-lg shadow-lg flex flex-col justify-between"
+              className="border hover:shadow-2xl bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col justify-between"
             >
               <div>
                 <img
@@ -49,11 +49,11 @@ const FeaturedClasses = () => {
                 <h3 className="text-xl font-semibold mb-2">
                   {clas?.className}
                 </h3>
-                <p className="text-gray-700">{clas?.details}</p>
+                <p className="text-gray-700 dark:text-gray-400">{clas?.details}</p>
               </div>
 
               <div className="flex justify-between items-center mt-3">
-                <span className="text-gray-500">
+                <span className="text-gray-700 dark:text-gray-300">
                   <span className="text-2xl">{clas?.bookings}</span> Bookings
                 </span>
                 <div className="flex -space-x-2">

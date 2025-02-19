@@ -18,6 +18,7 @@ import LinkedIn from './linkedin.png'
 import Instagram from './instagram.png'
 import YouTube from './youtube.png'
 import Whatsapp from './whatsapp.png'
+import Gym1 from './gym.jpeg'
 
 
 export const assets = {
@@ -32,6 +33,7 @@ export const assets = {
     Feature5,
     Feature6,
     Gym,
+    Gym1,
     GymImage,
     Trainer,
     Trainer1,
