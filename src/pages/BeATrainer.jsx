@@ -161,7 +161,7 @@ const BeATrainer = () => {
         {eligible ? (
           <form
             onSubmit={handleSubmit}
-            className="bg-white p-6 shadow-md rounded-lg border"
+            className="bg-white dark:bg-gray-800 p-6 shadow-md rounded-lg border"
           >
             <div className="mb-4">
               <label className="block font-medium mb-1">Full Name</label>
@@ -169,8 +169,9 @@ const BeATrainer = () => {
                 type="text"
                 name="fullName"
                 value={formData.fullName}
+                placeholder="Enter your name"
                 onChange={handleInputChange}
-                className="w-full border p-2 rounded-lg"
+                className="w-full border p-2 rounded-lg bg-gray-100 dark:bg-gray-700"
                 required
               />
             </div>
@@ -184,7 +185,7 @@ const BeATrainer = () => {
                 name="email"
                 value={userEmail}
                 readOnly
-                className="w-full border p-2 rounded-lg bg-gray-100"
+                className="w-full border p-2 rounded-lg bg-gray-100 dark:bg-gray-700"
               />
             </div>
 
@@ -195,7 +196,8 @@ const BeATrainer = () => {
                 name="linkedin"
                 value={formData.linkedin}
                 onChange={handleInputChange}
-                className="w-full border p-2 rounded-lg"
+                placeholder="Enter your linked url"
+                className="w-full border p-2 rounded-lg bg-gray-100 dark:bg-gray-700"
                 required
               />
             </div>
@@ -207,7 +209,8 @@ const BeATrainer = () => {
                 name="instagram"
                 value={formData.instagram}
                 onChange={handleInputChange}
-                className="w-full border p-2 rounded-lg"
+                placeholder="Enter your instagram url"
+                className="w-full border p-2 rounded-lg bg-gray-100 dark:bg-gray-700"
                 required
               />
             </div>
@@ -219,7 +222,8 @@ const BeATrainer = () => {
                 name="age"
                 value={formData.age}
                 onChange={handleInputChange}
-                className="w-full border p-2 rounded-lg"
+                placeholder="Enter your age"
+                className="w-full border p-2 rounded-lg bg-gray-100 dark:bg-gray-700"
                 required
               />
             </div>
@@ -234,7 +238,7 @@ const BeATrainer = () => {
                 value={formData.experience}
                 placeholder="e.g., 2"
                 onChange={handleInputChange}
-                className="w-full border p-2 rounded-lg"
+                className="w-full border p-2 rounded-lg bg-gray-100 dark:bg-gray-700"
                 required
               />
             </div>
@@ -245,7 +249,7 @@ const BeATrainer = () => {
                 isMulti
                 options={skillOptions}
                 onChange={handleSkillsChange}
-                className="w-full"
+                className="w-full bg-gray-100 dark:bg-gray-700 dark:text-gray-700"
                 required
               />
             </div>
@@ -256,7 +260,7 @@ const BeATrainer = () => {
                 isMulti
                 options={dayOptions}
                 onChange={handleDaysChange}
-                className="w-full"
+                className="w-full bg-gray-100 dark:bg-gray-700 dark:text-gray-700"
                 required
               />
             </div>
@@ -269,7 +273,7 @@ const BeATrainer = () => {
                 value={formData.availableTime}
                 onChange={handleInputChange}
                 placeholder="e.g., 9:00 AM - 5:00 PM"
-                className="w-full border p-2 rounded-lg"
+                className="w-full border p-2 rounded-lg bg-gray-100 dark:bg-gray-700"
                 required
               />
             </div>
@@ -282,7 +286,7 @@ const BeATrainer = () => {
                 placeholder="Describe about yourself..."
                 onChange={handleInputChange}
                 rows={3}
-                className="w-full border p-2 rounded-lg"
+                className="w-full border p-2 rounded-lg bg-gray-100 dark:bg-gray-700"
                 required
               />
             </div>
