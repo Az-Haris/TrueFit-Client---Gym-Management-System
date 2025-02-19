@@ -19,7 +19,7 @@ const Review = () => {
 
 
   return (
-    <div className="px-3">
+    <div className="px-3 container mx-auto">
       <Title
         title={"Real Stories, Real Results"}
         description={

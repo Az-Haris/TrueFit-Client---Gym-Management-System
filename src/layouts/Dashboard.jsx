@@ -4,13 +4,13 @@ import Sidebar from "../components/Dashboard/Sidebar";
 
 const Dashboard = () => {
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="min-h-screen">
       <>
         <DashboardNav></DashboardNav>
-        <hr />
-        <div className="flex w-full">
+        <div className="py-[28px]"></div>
+        <div className="flex min-h-screen">
             <Sidebar></Sidebar>
-            <div className="w-[70%] mx-auto ml-[max(5vw, 25px)] my-8 text-gray-600 text-base">
+            <div className="ml-[18%] w-[82%] mx-auto my-6 text-gray-600 text-base px-3 md:px-10">
             <Outlet></Outlet>
             </div>
         </div>

@@ -25,7 +25,7 @@ const FeaturedClasses = () => {
   });
 
   return (
-    <div>
+    <div className="container mx-auto ">
       <Title
         title={"Featured Classes"}
         description={"Top 6 most popular classes based on total bookings"}

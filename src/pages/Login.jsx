@@ -56,8 +56,8 @@ const Login = () => {
         <title>TrueFit - Login to your account.</title>
       </Helmet>
       <div className="inline-flex items-center gap-2 mb-2 mt-10">
-        <p className="text-3xl font-prata">Login</p>
-        <hr className="border-none h-[1.5px] w-8 bg-gray-800" />
+        <p className="text-3xl font-prata dark:text-gray-300">Login</p>
+        <hr className="border-none h-[1.5px] w-8 bg-gray-800 dark:bg-gray-300" />
       </div>
 
       <SocialLogin></SocialLogin>
@@ -90,7 +90,7 @@ const Login = () => {
         />
       </div>
 
-      <div className="w-full flex justify-between text-sm mt-[-8px]">
+      <div className="w-full flex justify-between text-sm mt-[-8px] dark:text-gray-400">
         <Link
           onClick={() => setEmail(emailRef.current.value)}
           to={"/forgot-pass"}

@@ -5,22 +5,22 @@ import { Helmet } from "react-helmet-async";
 const ErrorPage = () => {
   const navigate = useNavigate()
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-600 px-3">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-800 px-3">
       <ScrollToTop></ScrollToTop>
       <Helmet>
         <title>TrueFit - 404 - Not Found!</title>
       </Helmet>
       <div className="text-center">
         {/* <!-- Error Code --> */}
-        <h1 className="text-8xl lg:text-9xl font-extrabold text-blue-500">
+        <h1 className="text-8xl lg:text-9xl font-extrabold text-blue-500 dark:text-blue-600">
           404
         </h1>
 
         {/* <!-- Error Message --> */}
-        <p className="text-2xl md:text-3xl font-semibold text-gray-800 mt-4">
+        <p className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-400 mt-4">
           Oops! Page not found
         </p>
-        <p className="text-gray-600 mt-2">
+        <p className="text-gray-600 dark:text-gray-500 mt-2">
           The page you&apos;re looking for doesn&apos;t exist.
         </p>
 

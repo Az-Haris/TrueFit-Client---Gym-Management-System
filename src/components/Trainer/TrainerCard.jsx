@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 const TrainerCard = ({ trainer }) => {
   return (
-    <div className="bg-white shadow-lg rounded-lg p-6 text-center border hover:shadow-2xl relative">
+    <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 text-center border hover:shadow-2xl relative">
       <img
         src={trainer.photoURL}
         alt={trainer.fullName || trainer.displayName}
@@ -13,10 +13,10 @@ const TrainerCard = ({ trainer }) => {
       />
       <h3 className="text-xl font-bold mt-4">{trainer.fullName || trainer.displayName}</h3>
       <p className="text-gray-500">{trainer.experience} Years of Experience</p>
-      <p className="text-gray-700 mt-2">{trainer.skills.map(skill=>skill.label).join(', ')}</p>
+      <p className="text-gray-700 dark:text-gray-400 mt-2">{trainer.skills.map(skill=>skill.label).join(', ')}</p>
       <p
         className={`mt-2 ${
-          trainer.slots > 0 ? "text-green-600" : "text-red-600"
+          trainer.slots > 0 ? "text-green-600 dark:text-green-400" : "text-red-600"
         }`}
       >
         {trainer.slots > 0

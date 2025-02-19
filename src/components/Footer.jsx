@@ -7,36 +7,36 @@ const FooterSection = () => {
   return (
     <Footer
       container
-      className="w-full shadow-none rounded-none px-3"
+      className="w-full shadow-none rounded-none px-3 mt-16"
     >
-      <div className="container mx-auto text-center mt-16">
+      <div className="container mx-auto text-center">
         <Footer.Divider className="max-w-40" />
         <div className="w-full flex flex-col gap-7 md:flex-row lg:items-center justify-between">
           <div>
             <Logo></Logo>
-            <div className="text-left mt-2 text-gray-500">
+            <div className="text-left mt-2 text-gray-500 dark:text-gray-300">
               <p>23/3, Hospital Road, Nalchity, Jahlokati.</p>
               <p>mdalimuzzaman437@gmail.com</p>
               <p>+880 1405-742311</p>
             </div>
           </div>
           <div>
-            <p className="text-left mb-3 text-lg font-semibold text-gray-500">
+            <p className="text-left mb-3 text-lg font-semibold text-gray-500 dark:text-gray-300">
               Useful Links
             </p>
-            <ul className="text-gray-500 flex gap-x-7 gap-y-2 flex-wrap">
+            <ul className="text-gray-500 dark:text-gray-300 flex gap-x-7 gap-y-2 flex-wrap">
               <li>
-                <Link className="hover:text-gray-800" to={"/about"}>
+                <Link className="hover:text-gray-800 dark:hover:text-gray-500" to={"/about"}>
                   About
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-gray-800" to={"/privacy"}>
+                <Link className="hover:text-gray-800 dark:hover:text-gray-500" to={"/privacy"}>
                   Privacy-Policy
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-gray-800" to={"/terms"}>
+                <Link className="hover:text-gray-800 dark:hover:text-gray-500" to={"/terms"}>
                   Terms & Conditions
                 </Link>
               </li>
@@ -84,10 +84,10 @@ const FooterSection = () => {
         <Link
           to={"https://alimuzzaman-haris.netlify.app"}
           target="_blank"
-          className="text-sm text-gray-500 text-center"
+          className="text-sm text-gray-500 dark:text-gray-300 text-center"
         >
           © {new Date().getFullYear()}{" "}
-          <span className="hover:text-blue-700">Az Industries BD</span>
+          <span className="hover:text-blue-700 dark:hover:text-blue-400">Az Industries BD</span>
         </Link>
       </div>
     </Footer>

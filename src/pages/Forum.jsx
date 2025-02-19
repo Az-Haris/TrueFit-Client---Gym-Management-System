@@ -81,7 +81,7 @@ const Forum = () => {
           posts and valuable discussions.
         </title>
       </Helmet>
-      <div className="container mx-auto p-4 mt-5">
+      <div className="container mx-auto mt-5">
         <Title
           title="Explore Community Insights"
           description="Stay informed with the latest posts and valuable discussions."
@@ -111,7 +111,7 @@ const Forum = () => {
                 <p className="text-sm text-gray-400 mt-1 mb-4">
                   Category : {post?.category}
                 </p>
-                <p className="text-gray-600">{post?.description}</p>
+                <p className="text-gray-600 dark:text-gray-300">{post?.description}</p>
               </div>
               <div className="flex items-center justify-between mt-4">
                 {/* Voting Buttons */}
@@ -143,7 +143,7 @@ const Forum = () => {
                     Downvote
                   </button>
                 </div>
-                <span className="text-gray-500">
+                <span className="text-gray-500 dark:text-gray-400">
                   Votes: {post.upvotes - post.downvotes}
                 </span>
               </div>

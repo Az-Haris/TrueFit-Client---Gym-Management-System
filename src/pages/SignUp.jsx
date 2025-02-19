@@ -90,8 +90,8 @@ const SignUp = () => {
               <title>TrueFit - Register your account.</title>
             </Helmet>
       <div className="inline-flex items-center gap-2 mb-2 mt-10">
-        <p className="text-3xl font-prata">Sign Up</p>
-        <hr className="border-none h-[1.5px] w-8 bg-gray-800" />
+        <p className="text-3xl font-prata dark:text-gray-300">Sign Up</p>
+        <hr className="border-none h-[1.5px] w-8 dark:bg-gray-300 bg-gray-800" />
       </div>
 
       <SocialLogin></SocialLogin>
@@ -148,10 +148,10 @@ const SignUp = () => {
         id="fileUpload"
         name="photo"
         {...register("photo")}
-        className="w-full border border-gray-800 rounded-lg"
+        className="w-full border border-gray-800 dark:border-gray-500 rounded-lg dark:bg-gray-100"
       />
 
-      <div className="w-full flex justify-between text-sm mt-[-8px]">
+      <div className="w-full dark:text-gray-400 flex justify-between text-sm mt-[-8px]">
         <p></p>
         <Link to={"/login"} className="cursor-pointer">
           Login here

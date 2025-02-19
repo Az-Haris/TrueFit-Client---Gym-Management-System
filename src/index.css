@@ -26,4 +26,5 @@ body{
 .dashboard-link a.active{
   background-color: rgb(245, 245, 255);
   border-color: blue;
+  @apply dark:bg-gray-700 dark:border-blue-500;
 }

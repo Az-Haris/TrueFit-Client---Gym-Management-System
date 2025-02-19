@@ -1,18 +1,18 @@
 import { Button } from "flowbite-react";
-import { assets } from "../../assets/assets";
 import { Link } from "react-router";
 import { MdHome } from "react-icons/md";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import ThemeToggle from "../../utils/ThemeToggle";
+import Logo from "../Logo";
 
 const DashboardNav = () => {
   const { logOut, setLoading } = useAuth();
   return (
-    <div className="flex items-center justify-between py-2 px-[4%]">
-      <Link to={"/dashboard"}>
-        <img src={assets.logo} className="w-[max(10%,80px)]" alt="" />
-      </Link>
+    <div className="flex items-center justify-between py-2 px-[4%] fixed w-full border-b-2 bg-white dark:bg-gray-900">
+      <Logo></Logo>
       <div className="flex items-center gap-3">
+        <ThemeToggle></ThemeToggle>
         <Link to={"/"}>
           <Button color="blue" size="xs" pill outline>
             <MdHome className="text-lg" />

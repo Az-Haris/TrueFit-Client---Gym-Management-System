@@ -11,7 +11,7 @@ import useAuth from "../../hooks/useAuth";
 const Sidebar = () => {
   const { user } = useAuth();
   return (
-    <div className="w-[18%] min-h-screen border-r-2">
+    <div className="w-[18%] h-screen border-r-2 fixed left-0 overflow-y-auto">
       <div className="dashboard-link flex flex-col gap-4 pt-6 pl-[20%] text[15px]">
         {(user.role === "member" && (
           <>

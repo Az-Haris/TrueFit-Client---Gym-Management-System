@@ -55,7 +55,7 @@ const CommunityPosts = () => {
   const { posts } = data;
 
   return (
-    <div>
+    <div className="container mx-auto">
       <Title
         title={"Explore Community Insights"}
         description={

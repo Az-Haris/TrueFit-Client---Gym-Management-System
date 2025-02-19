@@ -36,13 +36,13 @@ const TeamSection = () => {
           </div>
         )}
 
-<div className="flex justify-center mt-10">
-        <Link to={"/trainers"}>
-          <Button outline gradientDuoTone="purpleToBlue">
-            See more ...
-          </Button>
-        </Link>
-      </div>
+        <div className="flex justify-center mt-10">
+          <Link to={"/trainers"}>
+            <Button outline gradientDuoTone="purpleToBlue">
+              See more ...
+            </Button>
+          </Link>
+        </div>
       </div>
     </>
   );
