@@ -79,12 +79,12 @@ const AddSlot = () => {
       <Helmet>
         <title>TrueFit - Add New Slots.</title>
       </Helmet>
-      <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-6">
+      <h2 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">
         Add New Slot
       </h2>
 
       {/* Read-Only Trainer Data */}
-      <div className="mb-6">
+      <div className="mb-6 dark:text-gray-300">
         <h3 className="text-lg font-semibold mb-2">Trainer Details</h3>
         <p>
           <strong>Name:</strong> {user.fullName || user.displayName}
@@ -104,7 +104,7 @@ const AddSlot = () => {
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Select Days */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-400">
             Select Days
           </label>
           <Select
@@ -122,7 +122,7 @@ const AddSlot = () => {
         <div>
           <label
             htmlFor="slotName"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-400"
           >
             Slot Name
           </label>
@@ -134,7 +134,7 @@ const AddSlot = () => {
             onChange={handleInputChange}
             required
             placeholder="Enter slot name (e.g., Morning Slot)"
-            className="mt-1 block w-full p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1 block w-full p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-gray-300"
           />
         </div>
 
@@ -142,7 +142,7 @@ const AddSlot = () => {
         <div>
           <label
             htmlFor="slotTime"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-400"
           >
             Slot Time
           </label>
@@ -154,13 +154,13 @@ const AddSlot = () => {
             onChange={handleInputChange}
             required
             placeholder="Enter slot time (e.g., 9:00 - 10:00 AM)"
-            className="mt-1 block w-full p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1 block w-full p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-gray-300"
           />
         </div>
 
         {/* Classes Include */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-400">
             Classes Include
           </label>
           <Select

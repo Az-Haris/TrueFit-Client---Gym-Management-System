@@ -85,16 +85,16 @@ const BookedTrainer = () => {
               <img
                 src={trainerInfo?.photoURL}
                 alt={trainerInfo?.fullName || "Trainer"}
-                className="w-20 h-20 rounded-full object-cover"
+                className="w-20 h-20 rounded-full border border-blue-500 object-cover"
               />
               <div>
-                <h2 className="text-xl font-bold">
+                <h2 className="text-xl font-bold dark:text-gray-300">
                   {trainerInfo?.fullName || "No Trainer Info"}
                 </h2>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-400">
                   {trainerInfo?.skills?.map((skill) => skill.label).join(", ")}
                 </p>
-                <p className="text-gray-600 flex gap-3">
+                <p className="text-gray-600 dark:text-gray-200 flex gap-3">
                   <a
                     href={trainerInfo?.linkedin || "#"}
                     target="_blank"
@@ -117,8 +117,8 @@ const BookedTrainer = () => {
 
             {/* Classes Info */}
             <div className="mb-6">
-              <h3 className="text-lg font-bold text-gray-800">Classes Info</h3>
-              <ul className="list-disc list-inside text-gray-700">
+              <h3 className="text-lg font-bold text-gray-800 dark:text-gray-300">Classes Info</h3>
+              <ul className="list-disc list-inside text-gray-700 dark:text-gray-400">
                 {classesInfo?.map((classItem) => (
                   <li key={classItem?._id}>{classItem?.className}</li>
                 ))}
@@ -127,8 +127,8 @@ const BookedTrainer = () => {
 
             {/* Slot Info */}
             <div className="mb-6">
-              <h3 className="text-lg font-bold text-gray-800">Slot Info</h3>
-              <ul className="text-gray-700 list-disc list-inside">
+              <h3 className="text-lg font-bold text-gray-800 dark:text-gray-300">Slot Info</h3>
+              <ul className="text-gray-700 dark:text-gray-400 list-disc list-inside">
                 <li>
                   <strong>Slot Name:</strong> {slotInfo?.slotName}
                 </li>

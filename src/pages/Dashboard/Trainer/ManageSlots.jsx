@@ -51,7 +51,7 @@ const ManageSlots = () => {
       <Helmet>
         <title>TrueFit - Manage Your Slots.</title>
       </Helmet>
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Manage Slots</h2>
+      <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">Manage Slots</h2>
 
       {isLoading ? (
         <Loading></Loading>
@@ -60,16 +60,16 @@ const ManageSlots = () => {
           {slots.map((slot) => (
             <div
               key={slot._id}
-              className="bg-white border rounded-lg shadow p-4 flex flex-col justify-between"
+              className="bg-white dark:bg-gray-800 border rounded-lg shadow p-4 flex flex-col justify-between"
             >
               <div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">
                   {slot.slotName}
                 </h3>
-                <p className="text-sm text-gray-600 mb-1">
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">
                   <strong>Time:</strong> {slot.slotTime}
                 </p>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 dark:text-gray-300">
                   <strong>Days:</strong>{" "}
                   {slot.selectedDays.map((day) => day.label).join(", ")}
                 </p>
@@ -87,7 +87,7 @@ const ManageSlots = () => {
 
       {/* No Slots Message */}
       {slots.length === 0 && (
-        <p className="text-gray-500">No slots available.</p>
+        <p className="text-red-500 dark:text-red-400">No slots available.</p>
       )}
     </div>
   );

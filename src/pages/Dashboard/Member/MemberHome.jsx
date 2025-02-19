@@ -79,7 +79,7 @@ const MemberHome = () => {
             </div>
           ) : (
             <div className="flex flex-col sm:flex-row gap-5">
-              <div className="p-3 border rounded-lg">
+              <div className="p-3 border rounded-lg bg-gray-300 dark:bg-gray-700 dark:text-gray-300">
                 <p>
                   <strong>Name:</strong> {slotsInfo?.slotName || ""}
                 </p>

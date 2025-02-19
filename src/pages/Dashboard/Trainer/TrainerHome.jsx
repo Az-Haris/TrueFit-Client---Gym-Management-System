@@ -40,7 +40,7 @@ const TrainerHome = () => {
         <title>TrueFit - Hey Trainer! Your dashboard at a glance.</title>
       </Helmet>
       {/* Welcome Section */}
-      <div className="bg-white shadow-md rounded-lg p-3 sm:p-6 mb-6">
+      <div className="bg-gray-100 dark:bg-gray-800 shadow-md rounded-lg p-3 sm:p-6 mb-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           {user && (
             <img
@@ -50,52 +50,52 @@ const TrainerHome = () => {
             />
           )}
           <div>
-            <h1 className="text-2xl font-bold text-gray-800">
+            <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-300">
               Welcome, {user?.fullName || user?.displayName}!
             </h1>
-            <p className="text-gray-600">Your dashboard at a glance.</p>
+            <p className="text-gray-600 dark:text-gray-400">Your dashboard at a glance.</p>
           </div>
         </div>
       </div>
 
       {/* Quick Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
-        <div className="bg-white shadow-md rounded-lg p-3 sm:p-6">
-          <h2 className="text-lg font-semibold text-gray-800">Total Slots</h2>
-          <p className="text-2xl font-bold text-blue-500">{stats?.totalSlots}</p>
+        <div className="bg-gray-100 dark:bg-gray-800 shadow-md rounded-lg p-3 sm:p-6">
+          <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-300">Total Slots</h2>
+          <p className="text-5xl font-bold text-blue-500">{stats?.totalSlots}</p>
         </div>
-        <div className="bg-white shadow-md rounded-lg p-3 sm:p-6">
-          <h2 className="text-lg font-semibold text-gray-800">
+        <div className="bg-gray-100 dark:bg-gray-800 shadow-md rounded-lg p-3 sm:p-6">
+          <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-300">
             Available Slots
           </h2>
-          <p className="text-2xl font-bold text-red-500">
+          <p className="text-5xl font-bold text-red-500">
             {stats?.AvailableSlots}
           </p>
         </div>
-        <div className="bg-white shadow-md rounded-lg p-3 sm:p-6">
-          <h2 className="text-lg font-semibold text-gray-800">Forum Posts</h2>
-          <p className="text-2xl font-bold text-green-500">
+        <div className="bg-gray-100 dark:bg-gray-800 shadow-md rounded-lg p-3 sm:p-6">
+          <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-300">Forum Posts</h2>
+          <p className="text-5xl font-bold text-green-500">
             {stats?.forumPosts}
           </p>
         </div>
       </div>
 
       {/* Upcoming Bookings */}
-      <div className="bg-white shadow-md rounded-lg p-3 sm:p-6 mb-6">
-        <h2 className="text-xl font-bold text-gray-800 mb-4">
+      <div className="bg-gray-100 dark:bg-gray-800 shadow-md rounded-lg p-3 sm:p-6 mb-6">
+        <h2 className="text-xl font-bold text-gray-800 dark:text-gray-300 mb-4">
           Upcoming Bookings
         </h2>
         {slots?.length > 0 ? (
           <div className="space-y-4">
-            <div className="flex gap-5 flex-col sm:flex-row sm:items-center bg-gray-50  rounded-lg">
+            <div className="flex gap-5 flex-col sm:flex-row sm:items-center rounded-lg">
               {slots?.map((slot) => (
-                <div key={slot?._id} className="p-4 border rounded-lg">
+                <div key={slot?._id} className="p-4 border dark:bg-gray-700 rounded-lg">
                   <div>
-                    <h3 className="font-semibold text-gray-800">
+                    <h3 className="font-semibold text-gray-800 dark:text-gray-200">
                       {slot?.slotName}
                     </h3>
-                    <p className="text-sm text-gray-600"><strong>Slot Time : </strong>{slot?.slotTime}</p>
-                    <p className="text-sm text-gray-600"><strong>Days : </strong>{slot?.selectedDays?.map(day=>day.label).join(', ')}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300"><strong>Slot Time : </strong>{slot?.slotTime}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300"><strong>Days : </strong>{slot?.selectedDays?.map(day=>day.label).join(', ')}</p>
                     
                   </div>
                 </div>
@@ -103,14 +103,14 @@ const TrainerHome = () => {
             </div>
           </div>
         ) : (
-          <p className="text-gray-600">No upcoming bookings.</p>
+          <p className="text-gray-600 dark:text-gray-400">No upcoming bookings.</p>
         )}
       </div>
 
       {/* Manage Slots Section */}
-      <div className="bg-white shadow-md rounded-lg p-3 sm:p-6">
-        <h2 className="text-xl font-bold text-gray-800 mb-4">Manage Slots</h2>
-        <p className="text-gray-600 mb-4">
+      <div className="bg-gray-100 dark:bg-gray-800 shadow-md rounded-lg p-3 sm:p-6">
+        <h2 className="text-xl font-bold text-gray-800 dark:text-gray-300 mb-4">Manage Slots</h2>
+        <p className="text-gray-600 dark:text-gray-400 mb-4">
           View, add, or update your available slots to keep your schedule
           organized.
         </p>
