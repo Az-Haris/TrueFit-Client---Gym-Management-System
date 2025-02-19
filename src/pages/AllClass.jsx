@@ -45,7 +45,7 @@ const AllClass = () => {
         </title>
       </Helmet>
       <ScrollToTop></ScrollToTop>
-      <div className="container mx-auto mt-5">
+      <div className="container mx-auto mt-6">
         <Title
           title={"Explore All Classes"}
           description={

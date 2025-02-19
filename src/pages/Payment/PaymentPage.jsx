@@ -17,7 +17,7 @@ const PaymentPage = () => {
   const selectedPackage = location.state.selectedPackage;
 
   return (
-    <div className="max-w-xl mx-auto mt-10 border bg-white dark:bg-gray-800 shadow-lg p-6 rounded-lg">
+    <div className="max-w-xl mx-auto mt-6 border bg-white dark:bg-gray-800 shadow-lg p-6 rounded-lg">
       <ScrollToTop></ScrollToTop>
       <Helmet>
         <title>TrueFit - Please Pay To Book The Trainer.</title>

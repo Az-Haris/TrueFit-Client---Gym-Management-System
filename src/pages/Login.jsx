@@ -14,6 +14,8 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [showPass, setShowPass] = useState(false);
   const { loginUser, setUser, setEmail } = useAuth();
+  const [defaultEmail, setDefaultEmail] = useState("")
+  const [defaultPass, setDefaultPass] = useState("")
   const navigate = useNavigate();
   const location = useLocation();
   const emailRef = useRef();
@@ -49,7 +51,7 @@ const Login = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800"
+      className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto gap-4 text-gray-800"
     >
       <ScrollToTop></ScrollToTop>
       <Helmet>
@@ -62,10 +64,32 @@ const Login = () => {
 
       <SocialLogin></SocialLogin>
 
+      <div className="flex justify-between w-full">
+        <button type="button" onClick={()=>{
+          setDefaultEmail("admin@truefit.com")
+          setDefaultPass("Admin123")
+        }} className="bg-blue-500 px-3 py-1 rounded-full text-white">
+          Admin Login
+        </button>
+        <button type="button" onClick={()=>{
+          setDefaultEmail("trainer@truefit.com")
+          setDefaultPass("Trainer123")
+        }} className="bg-blue-500 px-3 py-1 rounded-full text-white">
+          Trainer Login
+        </button>
+        <button type="button" onClick={()=>{
+          setDefaultEmail("member@truefit.com")
+          setDefaultPass("Member123")
+        }} className="bg-blue-500 px-3 py-1 rounded-full text-white">
+          Member Login
+        </button>
+      </div>
+
       <input
         type="email"
         name="email"
         ref={emailRef}
+        defaultValue={defaultEmail}
         autoComplete="username"
         className="w-full px-3 py-2 border border-gray-800 rounded-lg"
         placeholder="Email"
@@ -84,6 +108,7 @@ const Login = () => {
           type={showPass ? "text" : "password"}
           name="password"
           autoComplete="current-password"
+          defaultValue={defaultPass}
           className="w-full px-3 py-2 border border-gray-800 rounded-lg"
           placeholder="Password"
           required

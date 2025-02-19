@@ -81,7 +81,7 @@ const Forum = () => {
           posts and valuable discussions.
         </title>
       </Helmet>
-      <div className="container mx-auto mt-5">
+      <div className="container mx-auto mt-6">
         <Title
           title="Explore Community Insights"
           description="Stay informed with the latest posts and valuable discussions."

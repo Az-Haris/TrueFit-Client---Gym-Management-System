@@ -25,7 +25,7 @@ const AllTrainer = () => {
         </title>
       </Helmet>
       <ScrollToTop></ScrollToTop>
-      <div className="mt-5 container mx-auto">
+      <div className="mt-6 container mx-auto">
         <Title
           title={"Meet Our Trainers"}
           description={
