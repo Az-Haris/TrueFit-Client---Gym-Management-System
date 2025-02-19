@@ -21,7 +21,7 @@ import ManageSlots from "../pages/Dashboard/Trainer/ManageSlots";
 import MemberHome from "../pages/Dashboard/Member/MemberHome";
 import ActivityLog from "../pages/Dashboard/Member/ActivityLog";
 import BookedTrainer from "../pages/Dashboard/Member/BookedTrainer";
-import Profile from "../pages/Dashboard/Member/Profile";
+import Profile from "../pages/Dashboard/Profile";
 import AppliedTrainers from "../pages/Dashboard/Admin/AppliedTrainers";
 import AppliedTrainerDetails from "../pages/Dashboard/Admin/AppliedTrainerDetails";
 import SignUp from "../pages/SignUp";
@@ -151,6 +151,14 @@ const Router = createBrowserRouter([
           </AdminRoute>
         ),
       },
+      {
+        path: "admin-profile",
+        element: (
+          <AdminRoute>
+            <Profile></Profile>
+          </AdminRoute>
+        ),
+      },
 
       // Trainer Routes
       {
@@ -174,6 +182,14 @@ const Router = createBrowserRouter([
         element: (
           <TrainerRoute>
             <ManageSlots></ManageSlots>
+          </TrainerRoute>
+        ),
+      },
+      {
+        path: "trainer-profile",
+        element: (
+          <TrainerRoute>
+            <Profile></Profile>
           </TrainerRoute>
         ),
       },
@@ -210,7 +226,7 @@ const Router = createBrowserRouter([
         ),
       },
       {
-        path: "profile",
+        path: "member-profile",
         element: (
           <MemberRoute>
             <Profile></Profile>

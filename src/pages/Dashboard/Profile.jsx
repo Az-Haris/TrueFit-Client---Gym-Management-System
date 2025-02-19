@@ -1,10 +1,10 @@
 import { useState } from "react";
-import useAuth from "../../../hooks/useAuth";
-import { imageUpload } from "../../../utils/imageUpload";
+import useAuth from "../../hooks/useAuth";
+import { imageUpload } from "../../utils/imageUpload";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 import { Helmet } from "react-helmet-async";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Profile = () => {
   const { user, updateUser, setUser, logOut } = useAuth();
@@ -33,7 +33,7 @@ const Profile = () => {
         .patch(`/user/${user.email}`, { displayName: name, photoURL })
         .then(async (user) => {
           setUser(user.data);
-          navigate("/dashboard/member-home");
+          navigate("/dashboard");
           await Swal.fire(
             "Success!",
             `Profile Updated Successfully! Please Login again to see changes.`,

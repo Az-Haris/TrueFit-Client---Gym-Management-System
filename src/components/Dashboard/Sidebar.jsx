@@ -43,7 +43,7 @@ const Sidebar = () => {
 
             <NavLink
               className="flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-lg rounded-r-none"
-              to={"profile"}
+              to={"member-profile"}
             >
               <CgProfile className="text-2xl" />{" "}
               <p className="hidden md:block">Profile</p>
@@ -87,6 +87,15 @@ const Sidebar = () => {
                 <LuCirclePlus className="text-2xl" />{" "}
                 <p className="hidden md:block">Add Forum Post</p>
               </NavLink>
+
+              
+            <NavLink
+              className="flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-lg rounded-r-none"
+              to={"trainer-profile"}
+            >
+              <CgProfile className="text-2xl" />{" "}
+              <p className="hidden md:block">Profile</p>
+            </NavLink>
             </>
           )) ||
           (user.role === "admin" && (
@@ -140,6 +149,15 @@ const Sidebar = () => {
               >
                 <LuCirclePlus className="text-2xl" />{" "}
                 <p className="hidden md:block">Add Forum Post</p>
+              </NavLink>
+
+              
+              <NavLink
+                className="flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-lg rounded-r-none"
+                to={"admin-profile"}
+              >
+                <LuBookUser className="text-2xl" />{" "}
+                <p className="hidden md:block">Profile</p>
               </NavLink>
             </>
           ))}
