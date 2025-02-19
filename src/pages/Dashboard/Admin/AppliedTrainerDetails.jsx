@@ -75,9 +75,9 @@ const AppliedTrainerDetails = () => {
       </Helmet>
       <div className="flex items-center gap-3 mb-6">
         <Link to={"/dashboard/applied-trainers"}>
-          <FaRegArrowAltCircleLeft className="text-2xl text-black" />
+          <FaRegArrowAltCircleLeft className="text-2xl dark:text-white text-black" />
         </Link>
-        <h1 className="text-2xl font-bold text-gray-800 ">Trainer Details</h1>
+        <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-200 ">Trainer Details</h1>
       </div>
 
       {isLoading ? (
@@ -88,42 +88,42 @@ const AppliedTrainerDetails = () => {
             <img
               src={trainerDetails?.photoURL}
               alt="Profile"
-              className="w-40 h-40 rounded-full object-cover shadow-lg"
+              className="w-40 h-40 rounded-full border border-blue-500 object-cover shadow-lg"
             />
             <div className="flex-1">
-              <p className="text-lg font-semibold text-gray-700">
+              <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">
                 Name: {trainerDetails?.fullName}
               </p>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-400">
                 <strong>Email:</strong> {trainerDetails?.userEmail}
               </p>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-400">
                 <strong>About:</strong> {trainerDetails?.aboutInfo}
               </p>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-400">
                 <strong>Age:</strong> {trainerDetails?.age}
               </p>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-400">
                 <strong>Skills:</strong>{" "}
                 {trainerDetails.skills?.map((skill) => skill?.label).join(", ")}
               </p>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-400">
                 <strong>Experience:</strong> {trainerDetails?.experience} years
               </p>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-400">
                 <strong>Available Days:</strong>{" "}
                 {trainerDetails.availableDays
                   ?.map((day) => day?.label)
                   .join(", ")}
               </p>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-400">
                 <strong>Available Time:</strong> {trainerDetails?.availableTime}
               </p>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-400">
                 <strong>Applied at:</strong>{" "}
                 {trainerDetails?.appliedAt?.split("T")[0]}
               </p>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-400">
                 <strong>Status:</strong> {trainerDetails?.status}
               </p>
             </div>

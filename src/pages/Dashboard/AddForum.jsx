@@ -46,13 +46,13 @@ const AddForum = () => {
       <Helmet>
         <title>TrueFit - Add Forum Posts.</title>
       </Helmet>
-      <h1 className="text-2xl font-bold text-gray-800 mb-4">Add New Forum</h1>
+      <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-4">Add New Forum</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Title */}
         <div>
           <label
             htmlFor="title"
-            className="block font-medium text-gray-700 mb-2"
+            className="block font-medium text-gray-700 dark:text-gray-400 mb-2"
           >
             Forum Title
           </label>
@@ -63,7 +63,7 @@ const AddForum = () => {
             value={forumData.title}
             onChange={handleInputChange}
             required
-            className="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300 dark:bg-gray-800 dark:text-gray-300"
             placeholder="Enter forum title"
           />
         </div>
@@ -72,7 +72,7 @@ const AddForum = () => {
         <div>
           <label
             htmlFor="category"
-            className="block font-medium text-gray-700 mb-"
+            className="block font-medium text-gray-700 dark:text-gray-400 mb-"
           >
             Category
           </label>
@@ -82,7 +82,7 @@ const AddForum = () => {
             value={forumData.category}
             onChange={handleInputChange}
             required
-            className="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300 dark:bg-gray-800 dark:text-gray-300"
           >
             <option value="">Select a category</option>
             <option value="Nutrition">Nutrition</option>
@@ -106,7 +106,7 @@ const AddForum = () => {
         <div>
           <label
             htmlFor="description"
-            className="block font-medium text-gray-700 mb-2"
+            className="block font-medium text-gray-700 dark:text-gray-400 mb-2"
           >
             Description
           </label>
@@ -117,7 +117,7 @@ const AddForum = () => {
             onChange={handleInputChange}
             required
             rows={5}
-            className="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300 dark:bg-gray-800 dark:text-gray-300"
             placeholder="Write forum description here"
           />
         </div>

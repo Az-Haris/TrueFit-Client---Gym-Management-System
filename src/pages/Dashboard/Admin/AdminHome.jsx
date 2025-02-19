@@ -53,22 +53,22 @@ const AdminHome = () => {
       </Helmet>
       {/* Total Balance Section */}
       <div>
-        <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">
+        <h2 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-200 mb-4">
           Total Balance
         </h2>
-        <p className="text-4xl font-semibold text-green-600">${totalBalance}</p>
+        <p className="text-4xl font-semibold text-green-600 dark:text-green-400">${totalBalance}</p>
       </div>
       <hr className="my-8" />
 
       {/* Recent Transactions Section */}
       <div>
-        <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">
+        <h2 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-200 mb-4">
           Recent Transactions
         </h2>
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-200">
+          <table className="min-w-full bg-white dark:bg-gray-800 dark:text-gray-300 border border-gray-200">
             <thead>
-              <tr>
+              <tr className="bg-gray-200 dark:bg-gray-600">
                 <th className="text-left px-4 py-2 border-b">#</th>
                 <th className="text-left px-4 py-2 border-b">Member</th>
                 <th className="text-left px-4 py-2 border-b">Amount</th>
@@ -97,7 +97,7 @@ const AdminHome = () => {
 
       {/* Chart Section */}
       <div>
-        <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">
+        <h2 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-200 mb-4">
           Subscribers vs Paid Members
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

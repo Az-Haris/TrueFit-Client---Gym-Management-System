@@ -25,7 +25,7 @@ const AppliedTrainers = () => {
       <Helmet>
         <title>TrueFit - Applied Trainers.</title>
       </Helmet>
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">
+      <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">
         Applied Trainers
       </h1>
 
@@ -38,23 +38,20 @@ const AppliedTrainers = () => {
               {trainer.map((trainer) => (
                 <div
                   key={trainer._id}
-                  className="bg-white border rounded-lg shadow p-4 flex flex-col justify-between"
+                  className="bg-white dark:bg-gray-800 dark:text-gray-300 border rounded-lg shadow p-4 flex flex-col justify-between"
                 >
                   <div>
-                    <h2 className="text-lg font-bold text-gray-700 mb-2">
-                      {trainer.name}
-                    </h2>
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">
                       <strong>Name:</strong> {trainer.fullName}
                     </p>
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">
                       <strong>Age:</strong> {trainer.age}
                     </p>
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">
                       <strong>Skills:</strong>{" "}
                       {trainer.skills.map((skill) => skill.label).join(", ")}
                     </p>
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">
                       <strong>Experience:</strong> {trainer.experience} years
                     </p>
                   </div>

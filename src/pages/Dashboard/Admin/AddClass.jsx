@@ -44,13 +44,13 @@ const AddClass = () => {
         <title>TrueFit - Add Classes.</title>
       </Helmet>
       <div className="w-full max-w-xl">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">Add New Class</h2>
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">Add New Class</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Class Name */}
           <div>
             <label
               htmlFor="className"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-400"
             >
               Class Name
             </label>
@@ -60,7 +60,7 @@ const AddClass = () => {
               name="className"
               required
               placeholder="Enter class name"
-              className="mt-1 block w-full p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500"
+              className="mt-1 block w-full p-2 border dark:text-gray-300 dark:bg-gray-800 border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
@@ -68,7 +68,7 @@ const AddClass = () => {
           <div>
             <label
               htmlFor="details"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-400"
             >
               Details
             </label>
@@ -78,7 +78,7 @@ const AddClass = () => {
               required
               placeholder="Enter class details"
               rows="4"
-              className="mt-1 block w-full p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500"
+              className="mt-1 block w-full p-2 border dark:bg-gray-800 dark:text-gray-300 border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
@@ -86,7 +86,7 @@ const AddClass = () => {
           <div>
             <label
               htmlFor="image"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-400"
             >
               Class Image
             </label>
@@ -96,7 +96,7 @@ const AddClass = () => {
               name="photo"
               accept="image/*"
               required
-              className="mt-1 w-full rounded-md"
+              className="mt-1 w-full rounded-md border dark:text-gray-300"
             />
           </div>
 
