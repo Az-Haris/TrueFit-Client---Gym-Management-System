@@ -22,7 +22,7 @@ import MemberHome from "../pages/Dashboard/Member/MemberHome";
 import ActivityLog from "../pages/Dashboard/Member/ActivityLog";
 import BookedTrainer from "../pages/Dashboard/Member/BookedTrainer";
 import Profile from "../pages/Dashboard/Member/Profile";
-import Welcome from "../pages/Dashboard/Welcome";
+import Welcome from "../pages/Dashboard/DashboardRedirect";
 import AppliedTrainers from "../pages/Dashboard/Admin/AppliedTrainers";
 import AppliedTrainerDetails from "../pages/Dashboard/Admin/AppliedTrainerDetails";
 import SignUp from "../pages/SignUp";
@@ -33,6 +33,7 @@ import AdminRoute from "./AdminRoute";
 import TrainerRoute from "./TrainerRoute";
 import AddForum from "../pages/Dashboard/AddForum";
 import AdminTrainerRoute from "./AdminTrainerRoute";
+import DashboardRedirect from "../pages/Dashboard/DashboardRedirect";
 
 const Router = createBrowserRouter([
   {
@@ -99,7 +100,7 @@ const Router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <Welcome></Welcome>,
+        element: <DashboardRedirect></DashboardRedirect>
       },
 
       // Admin Routes
