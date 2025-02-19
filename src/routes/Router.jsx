@@ -33,6 +33,7 @@ import TrainerRoute from "./TrainerRoute";
 import AddForum from "../pages/Dashboard/AddForum";
 import AdminTrainerRoute from "./AdminTrainerRoute";
 import DashboardRedirect from "../pages/Dashboard/DashboardRedirect";
+import About from "../pages/About";
 
 const Router = createBrowserRouter([
   {
@@ -78,6 +79,10 @@ const Router = createBrowserRouter([
       {
         path: "/forum",
         element: <Forum></Forum>,
+      },
+      {
+        path: "/about",
+        element: <About></About>
       },
       {
         path: "/payment",
