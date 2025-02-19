@@ -38,7 +38,7 @@ const TrainerDetails = () => {
       ) : (
         <>
           {/* Trainer Info Section */}
-          <div className="flex flex-col lg:flex-row items-center bg-white shadow-lg rounded-lg p-5 mb-8">
+          <div className="flex flex-col lg:flex-row bg-white dark:bg-gray-800 shadow-lg rounded-lg p-5 mb-8">
             <img
               src={trainerData?.photoURL}
               alt={trainerData?.fullName || trainerData.displayName}
@@ -48,24 +48,24 @@ const TrainerDetails = () => {
               <h2 className="text-3xl font-bold mb-2">
                 {trainerData?.fullName || trainerData.displayName}
               </h2>
-              <p className="text-gray-700 mb-4">{trainerData?.aboutInfo}</p>
-              <p className="text-gray-700 mb-1">
+              <p className="text-gray-700 dark:text-gray-400 mb-4">{trainerData?.aboutInfo}</p>
+              <p className="text-gray-700 dark:text-gray-300 mb-1">
                 <strong>Age: </strong>
                 {trainerData?.age} year
               </p>
-              <p className="text-gray-700 mb-1">
+              <p className="text-gray-700 dark:text-gray-300 mb-1">
                 <strong>Experience: </strong>
                 {trainerData?.experience} year of experience
               </p>
               <h4 className="font-semibold">Expertise:</h4>
-              <ul className="list-disc list-inside text-gray-600">
+              <ul className="list-disc list-inside text-gray-600 dark:text-gray-400">
                 {trainerData?.skills?.map((item, index) => (
                   <li key={index}>{item.label}</li>
                 ))}
               </ul>
               <p
                 className={`mt-4 ${
-                  trainerData?.slots > 0 ? "text-gray-600" : "text-red-500"
+                  trainerData?.slots > 0 ? "text-gray-600 dark:text-gray-300" : "text-red-500"
                 } `}
               >
                 <strong>Slots Left: </strong>
@@ -75,7 +75,7 @@ const TrainerDetails = () => {
           </div>
 
           {/* Available Slots Section */}
-          <div className="bg-gray-50 shadow-lg border rounded-lg p-6 mb-32">
+          <div className="bg-gray-50  dark:bg-gray-800 shadow-lg border rounded-lg p-6 mb-32">
             <h3 className="text-2xl font-bold mb-4">
               Book For Available Slots
             </h3>
@@ -87,7 +87,7 @@ const TrainerDetails = () => {
                       <Link
                         to={`book-trainer/${slot._id}`}
                         key={slot._id}
-                        className="rounded-lg p-3 border hover:border-blue-300 hover:bg-blue-50 shadow-lg space-y-1"
+                        className="rounded-lg p-3 border hover:border-blue-300 hover:bg-blue-50 dark:hover:bg-gray-700 shadow-lg space-y-1"
                       >
                         <p>
                           <strong>Slot Name : </strong>

@@ -22,7 +22,6 @@ import MemberHome from "../pages/Dashboard/Member/MemberHome";
 import ActivityLog from "../pages/Dashboard/Member/ActivityLog";
 import BookedTrainer from "../pages/Dashboard/Member/BookedTrainer";
 import Profile from "../pages/Dashboard/Member/Profile";
-import Welcome from "../pages/Dashboard/DashboardRedirect";
 import AppliedTrainers from "../pages/Dashboard/Admin/AppliedTrainers";
 import AppliedTrainerDetails from "../pages/Dashboard/Admin/AppliedTrainerDetails";
 import SignUp from "../pages/SignUp";
