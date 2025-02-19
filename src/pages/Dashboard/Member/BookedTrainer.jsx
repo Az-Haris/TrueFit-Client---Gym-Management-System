@@ -76,8 +76,8 @@ const BookedTrainer = () => {
       <Helmet>
         <title>TrueFit - Your Booked Trainer</title>
       </Helmet>
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">Booked Trainer</h1>
+      <div className="">
+        <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-300 mb-4">Booked Trainer</h1>
         {bookingData ? (
           <>
             {/* Trainer Info */}

@@ -30,11 +30,11 @@ const ActivityLog = () => {
         <title>TrueFit - Activity Logs Are Here.</title>
       </Helmet>
       <div className="max-w-5xl">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">Activity Log</h1>
+        <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-300 mb-4">Activity Log</h1>
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-200">
+          <table className="min-w-full bg-white dark:bg-gray-800 dark:text-gray-300 border border-gray-200">
             <thead>
-              <tr className="bg-gray-100">
+              <tr className="bg-gray-200 dark:bg-gray-600">
                 <th className="text-left py-3 px-4 border-b border-gray-200">
                   Name
                 </th>
