@@ -82,30 +82,30 @@ const TrainerBooked = () => {
   };
 
   return (
-    <div className="container mx-auto px-3">
+    <div className="container mx-auto px-3 mt-6">
       <ScrollToTop></ScrollToTop>
       <Helmet>
         <title>TrueFit - Book The Trainer.</title>
       </Helmet>
       {/* Trainer and Slot Info */}
-      <div className="bg-white shadow-lg rounded-lg p-5 mb-8">
+      <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-5 mb-8">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">
           Trainer Booking Details
         </h2>
-        <p className="text-gray-700 mb-2 text-lg">
+        <p className="text-gray-700 dark:text-gray-300 mb-2 text-lg">
           <strong>Trainer Name:</strong> {trainerData.fullName || trainerData.displayName}
         </p>
-        <p className="text-gray-700 mb-2 text-lg">
+        <p className="text-gray-700 dark:text-gray-300 mb-2 text-lg">
           <strong>Selected Slot:</strong> {slot.slotName}
         </p>
       </div>
 
       {/* Membership Packages */}
-      <div className="bg-gray-50 shadow-lg rounded-lg p-5 mb-8">
+      <div className="bg-gray-50 dark:bg-gray-800 shadow-lg rounded-lg p-5 mb-8">
         <h3 className="text-2xl font-bold mb-4">Choose Your Membership Plan</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {packages.map((pkg, idx) => (
-            <Card key={idx}>
+            <Card className="dark:bg-gray-900" key={idx}>
               <h5 className="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">
                 {pkg.name}
               </h5>

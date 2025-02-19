@@ -80,7 +80,7 @@ const CheckoutForm = ({
   return (
     <form onSubmit={handleSubmit} className="mt-6">
       <div className="mb-4">
-        <label className="block text-gray-700 font-medium mb-2">
+        <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
           Card Details
         </label>
         <div className="border border-gray-300 rounded-md p-3">
